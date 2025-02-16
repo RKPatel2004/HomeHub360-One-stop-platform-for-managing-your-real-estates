@@ -7,7 +7,6 @@
 // import FeatureDetails from './landing/FeatureDetails';
 // import ContactUs from './landing/ContactUs'; 
 // import UserProfile from './components/UserProfile';
-// import OwnerHome from './owner/home';
 // import './App.css';
 
 // function App() {
@@ -22,7 +21,6 @@
 //           <Route path="/features/:featureId" element={<FeatureDetails />} />
 //           <Route path="/contact" element={<ContactUs />} />
 //           <Route path="/my_profile" element={<UserProfile />} />
-//           <Route path="/Manage_Property" element={<OwnerHome />} />
 //         </Routes>
 //       </div>
 //     </Router>
@@ -30,7 +28,6 @@
 // }
 
 // export default App;
-
 
 
 
@@ -47,6 +44,7 @@ import Landing from './landing/Landing';
 import FeatureDetails from './landing/FeatureDetails';
 import ContactUs from './landing/ContactUs'; 
 import UserProfile from './components/UserProfile';
+import ManageProperty from './components/ManageProperty';
 import './App.css';
 
 function App() {
@@ -61,6 +59,7 @@ function App() {
           <Route path="/features/:featureId" element={<FeatureDetails />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/my_profile" element={<UserProfile />} />
+          <Route path="/Manage_Property" element={<ManageProperty />} />
         </Routes>
       </div>
     </Router>
