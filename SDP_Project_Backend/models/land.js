@@ -9,6 +9,8 @@ const landSchema = new mongoose.Schema({
   status: { type: String, enum: ['available', 'sold', 'rented'], required: true },
   zoningType: { type: String, required: true },
   isForSale: { type: Boolean, default: true },
+  isForRent: { type: Boolean, default: false },
+  rentPrice: { type: Number },
   price: { type: Number, required: function() { return this.isForSale; } },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
