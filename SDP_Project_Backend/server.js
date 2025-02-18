@@ -18,6 +18,7 @@ const profileRoute = require("./routes/profile");
 const updateUserRoute = require("./routes/updateUser");
 const profileDetailsRoute = require("./routes/profileDetailsRoute");
 const deleteUserRoute = require("./routes/deleteUser");
+const submitPropertyRoute = require('./routes/SubmitProperty');
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use("/api/profile", profileRoute);
 app.use("/api/updateUser", updateUserRoute);
 app.use("/api/profileDetails", profileDetailsRoute);
 app.use("/api", deleteUserRoute);
+app.use("/api", submitPropertyRoute);
 
 app.get('/', (req, res) => {
   res.send('HomeHub360 API is running...');
