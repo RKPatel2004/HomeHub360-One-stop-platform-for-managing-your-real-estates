@@ -1,77 +1,82 @@
-
-
-import React, { useState, useRef } from 'react';
-import { X } from 'lucide-react';
-import './SubmitProperty.css';
-import axios from 'axios';
+import React, { useState, useRef } from "react";
+import { X } from "lucide-react";
+import "./SubmitProperty.css";
+import axios from "axios";
 
 const SubmitProperty = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
   const formRef = useRef(null);
   const [formData, setFormData] = useState({
-    propertyType: '',
-    title: '',
-    description: '',
-    address: '',
-    area: '',
-    status: 'available',
-    bedrooms: '',
-    bathrooms: '',
-    balconies: '',
-    furnishingStatus: 'unfurnished',
+    propertyType: "",
+    title: "",
+    description: "",
+    address: "",
+    area: "",
+    status: "available",
+    bedrooms: "",
+    bathrooms: "",
+    balconies: "",
+    furnishingStatus: "unfurnished",
     isForSale: false,
     isForRent: false,
-    rentPrice: '',
-    price: '',
-    floor: '',
-    totalFloors: '',
-    parkingSpaces: '',
-    gardenArea: '',
+    rentPrice: "",
+    price: "",
+    floor: "",
+    totalFloors: "",
+    parkingSpaces: "",
+    gardenArea: "",
     swimmingPool: false,
-    zoningType: '',
-    images: []
+    zoningType: "",
+    images: [],
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
-    setFormData(prev => ({
+
+    setFormData((prev) => ({
       ...prev,
-      images: [...prev.images, ...files]
+      images: [...prev.images, ...files],
     }));
+
+    console.log("Images after upload:", [...formData.images, ...files]); // Debugging
   };
 
   const removeImage = (index) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      images: prev.images.filter((_, i) => i !== index)
+      images: prev.images.filter((_, i) => i !== index),
     }));
   };
 
   const validateFirstPage = () => {
     // Get all input elements from the first page
-    const firstPageInputs = formRef.current.querySelectorAll('[data-page="1"] input, [data-page="1"] select, [data-page="1"] textarea');
-    
+    const firstPageInputs = formRef.current.querySelectorAll(
+      '[data-page="1"] input, [data-page="1"] select, [data-page="1"] textarea'
+    );
+
     // Check if all required fields are filled
     let isValid = true;
-    firstPageInputs.forEach(input => {
-      if (input.hasAttribute('required')) {
-        if (input.type === 'checkbox') {
+    firstPageInputs.forEach((input) => {
+      if (input.hasAttribute("required")) {
+        if (input.type === "checkbox") {
           // Special handling for checkboxes (if at least one of isForSale or isForRent should be checked)
-          if (input.name === 'isForSale' || input.name === 'isForRent') {
+          if (input.name === "isForSale" || input.name === "isForRent") {
             if (!formData.isForSale && !formData.isForRent) {
               isValid = false;
-              input.setCustomValidity('Please select at least one option (For Sale or For Rent)');
+              input.setCustomValidity(
+                "Please select at least one option (For Sale or For Rent)"
+              );
             } else {
-              input.setCustomValidity('');
+              input.setCustomValidity("");
             }
           }
         } else if (!input.value) {
@@ -79,13 +84,21 @@ const SubmitProperty = () => {
           input.reportValidity();
         }
       }
-      
+
       // Validate price fields if corresponding checkbox is checked
-      if (formData.isForSale && input.name === 'price' && (!input.value || input.value <= 0)) {
+      if (
+        formData.isForSale &&
+        input.name === "price" &&
+        (!input.value || input.value <= 0)
+      ) {
         isValid = false;
         input.reportValidity();
       }
-      if (formData.isForRent && input.name === 'rentPrice' && (!input.value || input.value <= 0)) {
+      if (
+        formData.isForRent &&
+        input.name === "rentPrice" &&
+        (!input.value || input.value <= 0)
+      ) {
         isValid = false;
         input.reportValidity();
       }
@@ -124,45 +137,57 @@ const SubmitProperty = () => {
       gardenArea: formData.gardenArea,
       swimmingPool: formData.swimmingPool,
       zoningType: formData.zoningType,
-      images: formData.images
+      images: formData.images,
     };
 
+    console.log(dataToSubmit.images);
     try {
-      const response = await axios.post('http://localhost:5000/api/submitProperty', dataToSubmit, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+      const response = await axios.post(
+        "http://localhost:5000/api/submitProperty",
+        dataToSubmit,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'multipart/form-data',
+          },
         }
-      });
-      console.log('Property submitted successfully:', response.data);
-      
-      setSuccessMessage('Property Submitted Successfully');
-      
+      );
+      console.log("Property submitted successfully:", response.data);
+
+      setSuccessMessage("Property Submitted Successfully");
+
       setTimeout(() => {
-        window.location.href = '/Manage_Property';
+        window.location.href = "/Manage_Property";
       }, 1000);
-      
     } catch (error) {
-      console.error('Error submitting property:', error);
+      console.error("Error submitting property:", error);
     }
   };
 
   return (
     <div className="submit-property">
       <div className="page-indicator">
-        <div className={`indicator ${currentPage === 1 ? 'active' : ''}`}>1</div>
-        <div className={`indicator ${currentPage === 2 ? 'active' : ''}`}>2</div>
+        <div className={`indicator ${currentPage === 1 ? "active" : ""}`}>
+          1
+        </div>
+        <div className={`indicator ${currentPage === 2 ? "active" : ""}`}>
+          2
+        </div>
       </div>
 
       {successMessage && (
-        <div className="success-message" style={{ 
-          padding: '10px', 
-          backgroundColor: '#d4edda', 
-          color: '#155724', 
-          borderRadius: '4px', 
-          marginBottom: '20px',
-          textAlign: 'center', 
-          fontSize: '25px'
-        }}>
+        <div
+          className="success-message"
+          style={{
+            padding: "10px",
+            backgroundColor: "#d4edda",
+            color: "#155724",
+            borderRadius: "4px",
+            marginBottom: "20px",
+            textAlign: "center",
+            fontSize: "25px",
+          }}
+        >
           {successMessage}
         </div>
       )}
@@ -175,9 +200,9 @@ const SubmitProperty = () => {
             <div className="form-section">
               <div className="form-group">
                 <label>Property Type</label>
-                <select 
-                  name="propertyType" 
-                  value={formData.propertyType} 
+                <select
+                  name="propertyType"
+                  value={formData.propertyType}
                   onChange={handleChange}
                   required
                 >
@@ -191,10 +216,10 @@ const SubmitProperty = () => {
 
               <div className="form-group">
                 <label>Title</label>
-                <input 
-                  type="text" 
-                  name="title" 
-                  value={formData.title} 
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
                   onChange={handleChange}
                   required
                   minLength="5"
@@ -205,9 +230,9 @@ const SubmitProperty = () => {
 
               <div className="form-group full-width">
                 <label>Description</label>
-                <textarea 
-                  name="description" 
-                  value={formData.description} 
+                <textarea
+                  name="description"
+                  value={formData.description}
                   onChange={handleChange}
                   required
                   minLength="20"
@@ -218,10 +243,10 @@ const SubmitProperty = () => {
 
               <div className="form-group">
                 <label>Address</label>
-                <input 
-                  type="text" 
-                  name="address" 
-                  value={formData.address} 
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
                   onChange={handleChange}
                   required
                   minLength="10"
@@ -232,10 +257,10 @@ const SubmitProperty = () => {
 
               <div className="form-group">
                 <label>Area (sq ft)</label>
-                <input 
-                  type="number" 
-                  name="area" 
-                  value={formData.area} 
+                <input
+                  type="number"
+                  name="area"
+                  value={formData.area}
                   onChange={handleChange}
                   required
                   min="1"
@@ -243,13 +268,13 @@ const SubmitProperty = () => {
                 />
               </div>
 
-              {formData.propertyType !== 'land' && (
+              {formData.propertyType !== "land" && (
                 <>
                   <div className="form-group">
                     <label>Furnishing Status</label>
-                    <select 
-                      name="furnishingStatus" 
-                      value={formData.furnishingStatus} 
+                    <select
+                      name="furnishingStatus"
+                      value={formData.furnishingStatus}
                       onChange={handleChange}
                       required
                     >
@@ -259,45 +284,45 @@ const SubmitProperty = () => {
                     </select>
                   </div>
 
-                  {formData.propertyType !== 'office' && (
+                  {formData.propertyType !== "office" && (
                     <>
                       <div className="form-group">
                         <label>Bedrooms</label>
-                        <input 
-                          type="number" 
-                          name="bedrooms" 
-                          value={formData.bedrooms} 
-                          onChange={handleChange} 
+                        <input
+                          type="number"
+                          name="bedrooms"
+                          value={formData.bedrooms}
+                          onChange={handleChange}
                           required
                           min="0"
-                          className="input-field" 
+                          className="input-field"
                         />
                       </div>
 
                       <div className="form-group">
                         <label>Bathrooms</label>
-                        <input 
-                          type="number" 
-                          name="bathrooms" 
-                          value={formData.bathrooms} 
-                          onChange={handleChange} 
+                        <input
+                          type="number"
+                          name="bathrooms"
+                          value={formData.bathrooms}
+                          onChange={handleChange}
                           required
                           min="0"
-                          className="input-field" 
+                          className="input-field"
                         />
                       </div>
 
-                      {formData.propertyType === 'apartment' && (
+                      {formData.propertyType === "apartment" && (
                         <div className="form-group">
                           <label>Balconies</label>
-                          <input 
-                            type="number" 
-                            name="balconies" 
-                            value={formData.balconies} 
-                            onChange={handleChange} 
+                          <input
+                            type="number"
+                            name="balconies"
+                            value={formData.balconies}
+                            onChange={handleChange}
                             required
                             min="0"
-                            className="input-field" 
+                            className="input-field"
                           />
                         </div>
                       )}
@@ -306,96 +331,96 @@ const SubmitProperty = () => {
                 </>
               )}
 
-              {formData.propertyType === 'office' && (
+              {formData.propertyType === "office" && (
                 <>
                   <div className="form-group">
                     <label>Floor</label>
-                    <input 
-                      type="number" 
-                      name="floor" 
-                      value={formData.floor} 
-                      onChange={handleChange} 
+                    <input
+                      type="number"
+                      name="floor"
+                      value={formData.floor}
+                      onChange={handleChange}
                       required
                       min="0"
-                      className="input-field" 
+                      className="input-field"
                     />
                   </div>
 
                   <div className="form-group">
                     <label>Total Floors</label>
-                    <input 
-                      type="number" 
-                      name="totalFloors" 
-                      value={formData.totalFloors} 
-                      onChange={handleChange} 
+                    <input
+                      type="number"
+                      name="totalFloors"
+                      value={formData.totalFloors}
+                      onChange={handleChange}
                       required
                       min="1"
-                      className="input-field" 
+                      className="input-field"
                     />
                   </div>
 
                   <div className="form-group">
                     <label>Parking Spaces</label>
-                    <input 
-                      type="number" 
-                      name="parkingSpaces" 
-                      value={formData.parkingSpaces} 
-                      onChange={handleChange} 
+                    <input
+                      type="number"
+                      name="parkingSpaces"
+                      value={formData.parkingSpaces}
+                      onChange={handleChange}
                       required
                       min="0"
-                      className="input-field" 
+                      className="input-field"
                     />
                   </div>
                 </>
               )}
 
-              {formData.propertyType === 'farmhouse' && (
+              {formData.propertyType === "farmhouse" && (
                 <>
                   <div className="form-group">
                     <label>Garden Area</label>
-                    <input 
-                      type="number" 
-                      name="gardenArea" 
-                      value={formData.gardenArea} 
-                      onChange={handleChange} 
+                    <input
+                      type="number"
+                      name="gardenArea"
+                      value={formData.gardenArea}
+                      onChange={handleChange}
                       required
                       min="0"
-                      className="input-field" 
+                      className="input-field"
                     />
                   </div>
 
                   <div className="form-group">
                     <label>Swimming Pool</label>
-                    <input 
-                      type="checkbox" 
-                      name="swimmingPool" 
-                      checked={formData.swimmingPool} 
+                    <input
+                      type="checkbox"
+                      name="swimmingPool"
+                      checked={formData.swimmingPool}
                       onChange={handleChange}
                     />
                   </div>
                 </>
               )}
 
-              {formData.propertyType === 'land' && (
+              {formData.propertyType === "land" && (
                 <div className="form-group">
                   <label>Zoning Type</label>
-                  <input 
-                    type="text" 
-                    name="zoningType" 
-                    value={formData.zoningType} 
-                    onChange={handleChange} 
+                  <input
+                    type="text"
+                    name="zoningType"
+                    value={formData.zoningType}
+                    onChange={handleChange}
                     required
-                    className="input-field" 
+                    className="input-field"
                   />
                 </div>
               )}
 
               <div className="form-group">
                 <label>Status</label>
-                <select 
-                  name="status" 
-                  value={formData.status} 
-                  onChange={handleChange} 
+                <select
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
                   required
                   className="input-field"
                 >
@@ -407,10 +432,10 @@ const SubmitProperty = () => {
 
               <div className="form-group">
                 <label>For Sale</label>
-                <input 
-                  type="checkbox" 
-                  name="isForSale" 
-                  checked={formData.isForSale} 
+                <input
+                  type="checkbox"
+                  name="isForSale"
+                  checked={formData.isForSale}
                   onChange={handleChange}
                 />
               </div>
@@ -418,10 +443,10 @@ const SubmitProperty = () => {
               {formData.isForSale && (
                 <div className="form-group">
                   <label>Sale Price</label>
-                  <input 
-                    type="number" 
-                    name="price" 
-                    value={formData.price} 
+                  <input
+                    type="number"
+                    name="price"
+                    value={formData.price}
                     onChange={handleChange}
                     required
                     min="1"
@@ -432,10 +457,10 @@ const SubmitProperty = () => {
 
               <div className="form-group">
                 <label>For Rent</label>
-                <input 
-                  type="checkbox" 
-                  name="isForRent" 
-                  checked={formData.isForRent} 
+                <input
+                  type="checkbox"
+                  name="isForRent"
+                  checked={formData.isForRent}
                   onChange={handleChange}
                 />
               </div>
@@ -443,10 +468,10 @@ const SubmitProperty = () => {
               {formData.isForRent && (
                 <div className="form-group">
                   <label>Rent Price</label>
-                  <input 
-                    type="number" 
-                    name="rentPrice" 
-                    value={formData.rentPrice} 
+                  <input
+                    type="number"
+                    name="rentPrice"
+                    value={formData.rentPrice}
                     onChange={handleChange}
                     required
                     min="1"
@@ -456,7 +481,13 @@ const SubmitProperty = () => {
               )}
             </div>
             <div className="form-navigation">
-              <button type="button" className="next-btn" onClick={handleNextClick}>Next</button>
+              <button
+                type="button"
+                className="next-btn"
+                onClick={handleNextClick}
+              >
+                Next
+              </button>
             </div>
           </div>
         )}
@@ -466,29 +497,49 @@ const SubmitProperty = () => {
             <h2 className="form-title">Images</h2>
 
             <div className="form-group">
-              <input 
-                type="file" 
+              <input
+                type="file"
                 multiple
                 onChange={handleImageUpload}
                 required={formData.images.length === 0}
                 accept="image/*"
                 className="input-field"
+                name="images"
               />
             </div>
 
             <div className="image-preview">
               {formData.images.map((image, index) => (
                 <div key={index} className="image-thumbnail">
-                  <img src={URL.createObjectURL(image)} alt={`image-${index}`} />
+                  {image instanceof File ? (
+                    <img
+                      src={URL.createObjectURL(image)}
+                      alt={`image-${index}`}
+                    />
+                  ) : (
+                    <span>Invalid file</span>
+                  )}
                   <button type="button" onClick={() => removeImage(index)}>
                     <X />
                   </button>
                 </div>
               ))}
             </div>
+
             <div className="flex justify-between mt-4 space-x-4">
-              <button type="button" className="prev-btn px-4 py-2 bg-gray-300 rounded" onClick={() => setCurrentPage(1)}>Back</button>
-              <button type="submit" className="submit-btn px-4 py-2 bg-blue-500 text-white rounded">Submit Property</button>
+              <button
+                type="button"
+                className="prev-btn px-4 py-2 bg-gray-300 rounded"
+                onClick={() => setCurrentPage(1)}
+              >
+                Back
+              </button>
+              <button
+                type="submit"
+                className="submit-btn px-4 py-2 bg-blue-500 text-white rounded"
+              >
+                Submit Property
+              </button>
             </div>
           </div>
         )}
