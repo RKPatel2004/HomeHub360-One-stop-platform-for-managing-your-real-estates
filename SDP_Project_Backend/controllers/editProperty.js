@@ -5,7 +5,7 @@ const Office = require("../models/office");
 
 const editProperty = async (req, res) => {
   try {
-    const { id, propertyType } = req.params; // ✅ Fix: Use "propertyType" (not "type")
+    const { id, propertyType } = req.params;
     const ownerId = req.user.id; // Extract user ID from JWT token
     const updates = req.body;
 
