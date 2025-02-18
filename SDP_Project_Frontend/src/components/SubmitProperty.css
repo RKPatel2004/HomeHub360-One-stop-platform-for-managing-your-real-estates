@@ -1,0 +1,157 @@
+.submit-property {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.page-indicator {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.indicator {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.indicator.active {
+  background-color: #5f27cd;
+}
+
+.form-page {
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  width: 48%;
+  margin-bottom: 15px;
+  padding-right: 2%;
+}
+
+.form-group.full-width {
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.input-field,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.next-btn {
+  background-color: #5f27cd;
+  color: white;
+}
+
+.prev-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.submit-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #bbb;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.upload-box {
+  text-align: center;
+}
+
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.image-preview {
+  position: relative;
+  margin-right: 10px;
+}
+
+.image-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.remove-image {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.remove-image:hover {
+  background-color: #c0392b;
+}

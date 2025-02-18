@@ -2,8 +2,36 @@ const Apartment = require("../models/apartment");
 const Farmhouse = require("../models/farmhouse");
 const Land = require("../models/land");
 const Office = require("../models/office");
+const path = require('path')
+const multer = require("multer");
 
-exports.submitProperty = async (req, res) => {
+// Configure Multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads/properties"); // Directory for storing uploaded profile pictures
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${Date.now()}-${file.originalname}`);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 2 * 1024 * 1024 }, // Limit file size to 2MB
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png/;
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = fileTypes.test(file.mimetype);
+
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(new Error("Only .jpeg, .jpg, and .png files are allowed!"));
+    }
+  },
+})
+
+const submitProperty = async (req, res) => {
   try {
     const {
       propertyType, title, description, address, status,
@@ -13,9 +41,9 @@ exports.submitProperty = async (req, res) => {
     } = req.body;
 
     const ownerId = req.user.id;
-
+    console.log(req.files)
     // Store multiple image paths
-    const imagePaths = req.files ? req.files.map(file => `/uploads/${file.filename}`) : [];
+    const imagePaths = req.files ? req.files['images[]'].map(file => `/uploads/properties/${file.filename}`) : [];
 
     let property;
 
@@ -108,3 +136,5 @@ exports.submitProperty = async (req, res) => {
     res.status(500).json({ message: "Error submitting property", error: error.message });
   }
 };
+
+module.exports = {submitProperty, upload, storage}
