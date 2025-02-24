@@ -22,7 +22,7 @@ const submitPropertyRoute = require('./routes/SubmitProperty');
 const getPropertyRoute = require("./routes/getProperty");
 const editPropertyRoute = require("./routes/editProperty");
 const deletePropertyRoute = require("./routes/deleteProperty");
-const getPropertyByIdRoute = require("./routes/getPropertyById");
+const getPropertyByIdRoute = require("./routes/getPropertyByid");
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
