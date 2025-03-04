@@ -43,6 +43,11 @@
   gap: 1rem;
 }
 
+.features h2
+{
+  font-weight: bolder;
+  font-size: 25px;
+}
 .features-dropdown {
   position: relative;
   cursor: pointer;
@@ -279,6 +284,10 @@
   margin-bottom: 1rem;
 }
 
+.how-it-works h2{
+  font-weight: bolder;
+  font-size: 25px;
+}
 .how-it-works {
   padding: 5rem 5%;
   background: #f8f9fa;
@@ -310,6 +319,10 @@
   font-weight: bold;
 }
 
+.contact h2{
+  font-weight: bolder;
+  font-size: 25px;
+}
 .contact {
   padding: 5rem 5%;
   text-align: center;

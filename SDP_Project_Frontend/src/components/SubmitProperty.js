@@ -493,7 +493,7 @@ const SubmitProperty = () => {
         )}
 
         {currentPage === 2 && (
-          <div className="form-page flex">
+          <div className="form-page flex flex-col">
             <h2 className="form-title">Images</h2>
 
             <div className="form-group">
