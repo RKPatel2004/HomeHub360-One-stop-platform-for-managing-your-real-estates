@@ -229,7 +229,7 @@ const SubmitProperty = () => {
               </div>
 
               <div className="form-group full-width">
-                <label>Description</label>
+                <label>Address</label>
                 <textarea
                   name="description"
                   value={formData.description}
@@ -242,7 +242,7 @@ const SubmitProperty = () => {
               </div>
 
               <div className="form-group">
-                <label>Address</label>
+                <label>City</label>
                 <input
                   type="text"
                   name="address"

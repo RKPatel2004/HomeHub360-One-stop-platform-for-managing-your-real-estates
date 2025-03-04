@@ -1,4 +1,2 @@
 node_modules
 .env
-routes/editProperty.js
-controllers/editProperty.js
