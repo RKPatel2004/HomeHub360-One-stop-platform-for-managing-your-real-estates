@@ -1,0 +1,315 @@
+/* Customer Dashboard Styles */
+.customer-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .dashboard-header p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+  }
+  
+  /* Filter tabs */
+  .filter-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .filter-tabs button {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    background: #f5f5f5;
+    color: #555;
+    border-radius: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-tabs button:hover {
+    background: #e0e0e0;
+  }
+  
+  .filter-tabs button.active {
+    background: #3498db;
+    color: white;
+  }
+  
+  /* Property Grid */
+  .properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Property Card */
+  .property-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .property-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .property-card:hover .property-image img {
+    transform: scale(1.05);
+  }
+  
+  .property-type,
+  .property-status {
+    position: absolute;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .property-type {
+    top: 10px;
+    left: 10px;
+    background: #3498db;
+    color: white;
+  }
+  
+  .property-status {
+    top: 10px;
+    right: 10px;
+    background: #2ecc71;
+    color: white;
+  }
+  
+  .property-status:not([status="available"]) {
+    background: #e74c3c;
+  }
+  
+  .property-details {
+    padding: 1.5rem;
+  }
+  
+  .property-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+  }
+  
+  .property-address {
+    color: #7f8c8d;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .property-address i {
+    margin-right: 0.5rem;
+    color: #e74c3c;
+  }
+  
+  .property-specs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ecf0f1;
+    padding-bottom: 1rem;
+  }
+  
+  .spec {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .spec i {
+    color: #3498db;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .spec span {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+  }
+  
+  .payment-info {
+    padding: 1rem 0;
+    border-bottom: 1px solid #ecf0f1;
+    margin-bottom: 1rem;
+  }
+  
+  .payment-info p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+  
+  .property-price {
+    margin-bottom: 1rem;
+  }
+  
+  .property-price h4 {
+    color: #2ecc71;
+    font-size: 1.4rem;
+  }
+  
+  .property-price span {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+  }
+  
+  .view-details-btn {
+    width: 100%;
+    padding: 0.8rem 0;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .view-details-btn:hover {
+    background: #2980b9;
+  }
+  
+  /* Loading State */
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #3498db;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Error State */
+  .error-message {
+    background: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #b91c1c;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .error-message i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+  
+  /* Empty State */
+  .no-properties {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #f8fafc;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .no-properties i {
+    font-size: 4rem;
+    color: #cbd5e1;
+    margin-bottom: 1rem;
+  }
+  
+  .no-properties h2 {
+    color: #64748b;
+    margin-bottom: 0.5rem;
+  }
+  
+  .no-properties p {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+  
+  .browse-properties-btn {
+    padding: 0.8rem 2rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .browse-properties-btn:hover {
+    background: #2980b9;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .properties-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .filter-tabs {
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+      justify-content: flex-start;
+    }
+    
+    .filter-tabs button {
+      flex-shrink: 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .properties-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .dashboard-header h1 {
+      font-size: 2rem;
+    }
+  }
