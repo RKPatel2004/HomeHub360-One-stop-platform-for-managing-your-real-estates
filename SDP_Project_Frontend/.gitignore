@@ -30,3 +30,17 @@ SubmitProperty.js
 SubmitProperty.css
 
 
+
+
+
+src/components/PaymentGateway.js
+src/components/PaymentGateway.css
+src/components/PaymentCancel.js
+src/components/PaymentCancel.css
+src/components/CustomerDashboard.js
+src/components/CustomerDashboard.css
+
+src/components/PropertyEditForm.css
+src/components/PropertyEditForm.js
+src/components/PropertyModal.css
+src/components/PropertyModal.js
