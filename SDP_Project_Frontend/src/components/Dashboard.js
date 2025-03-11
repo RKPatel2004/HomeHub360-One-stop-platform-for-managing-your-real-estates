@@ -12,6 +12,7 @@
 //     const fetchProperties = async () => {
 //       try {
 //         const token = localStorage.getItem("token");
+//         console.log(token);
 //         const response = await axios.get("http://localhost:5000/api/my-properties", {
 //           headers: { Authorization: `Bearer ${token}` },
 //         });
@@ -81,26 +82,28 @@
 
 
 
-
+//tirth commit
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ImageGallery from './ImageGallery';
 import PropertyModal from './PropertyModal';
 import './Dashboard.css';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedProperty, setSelectedProperty] = useState(null);
-
+  const user = useSelector(state => state.User);
+  
   useEffect(() => {
     fetchProperties();
   }, []);
 
   const fetchProperties = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = user.token;
       const response = await axios.get("http://localhost:5000/api/my-properties", {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -152,7 +155,7 @@ const Dashboard = () => {
                 <p className="property-description">{property.description}</p>
                 <p className="property-detail">
                   <span className="detail-label">Price:</span>
-                  {property.price ? `₹${property.price.toLocaleString()}` : "N/A"}
+                  {property.price ? `$${property.price.toLocaleString()}` : "N/A"}
                 </p>
                 <p className="property-detail">
                   <span className="detail-label">Location:</span>

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import './FeatureDetails.css';
+import { useSelector } from 'react-redux';
+
 
 const FeatureDetails = () => {
   const { featureId } = useParams();
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const user = useSelector(state => state.User);
+  
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = user.token;
     setIsLoggedIn(!!token);
-  }, []);
+  }, [user.token]);
 
   const featureContent = {
     'property-listing': {

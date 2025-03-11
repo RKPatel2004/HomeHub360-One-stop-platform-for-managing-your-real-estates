@@ -302,6 +302,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './SignUp.css';
+import { useDispatch  , useSelector } from 'react-redux';
+import { AddUser } from '../../redux/reducer/loginslice';
+
 const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -312,6 +315,8 @@ const SignUp = () => {
     phone: '',
     role: 'customer'
   });
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.User)
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -343,6 +348,14 @@ const SignUp = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/register', formData);
       setSuccess(response.data.message);
+      const usr = {
+        username: formData.username,
+        role:formData.role,
+        token:response.data.token,
+        uid:response.data._id
+      }
+      
+      dispatch(AddUser(usr))
       localStorage.setItem('token', response.data.token);
       setTimeout(() => {
         navigate('/');

@@ -1,0 +1,360 @@
+.search-property-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .search-header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bolder;
+    font-size: 25px;
+  }
+  
+  .search-bar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .search-input-wrapper {
+    position: relative;
+    width: 70%;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .search-button {
+    padding: 12px 25px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .search-button:hover {
+    background-color: #3367d6;
+  }
+  
+  .address-dropdown {
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .address-item {
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  .address-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .loading-message, .error-message, .no-results {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 4px;
+  }
+  
+  .loading-message {
+    background-color: #e8f0fe;
+    color: #4285f4;
+  }
+  
+  .error-message {
+    background-color: #fae9e9;
+    color: #d93025;
+  }
+  
+  .no-results {
+    background-color: #f8f9fa;
+    color: #5f6368;
+  }
+  
+  /* Search results container */
+  .search-results-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-section h3 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .filter-field {
+    margin-bottom: 15px;
+  }
+  
+  .filter-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  /* Fix for filter input fields visibility */
+  .filter-input,
+  .filter-field input,
+  .filter-field select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white !important; /* Ensure background is visible */
+    font-size: 14px;
+    display: block;
+    color: #333 !important; /* Ensure text is visible */
+    height: auto !important; /* Ensure height is appropriate */
+    opacity: 1 !important; /* Ensure opacity is 100% */
+    pointer-events: auto !important; /* Ensure fields are clickable */
+    position: static !important; /* Ensure position doesn't affect visibility */
+    visibility: visible !important; /* Explicitly set visibility */
+    z-index: 1; /* Ensure proper stacking context */
+    appearance: auto !important; /* Fix for select dropdowns */
+    -webkit-appearance: auto !important; /* For Safari */
+    -moz-appearance: auto !important; /* For Firefox */
+  }
+  
+  /* Ensure dropdown options are visible */
+  .filter-field select option {
+    background-color: white;
+    color: #333;
+    padding: 8px;
+  }
+  
+  .filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .apply-button, .clear-button {
+    flex: 1;
+    padding: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .apply-button {
+    background-color: #4285f4;
+    color: white;
+  }
+  
+  .apply-button:hover {
+    background-color: #3367d6;
+  }
+  
+  .clear-button {
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    color: #3c4043;
+  }
+  
+  .clear-button:hover {
+    background-color: #f1f3f4;
+  }
+  
+  /* Properties content styling */
+  .properties-content {
+    flex: 1;
+  }
+  
+  .results-header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+  }
+  
+  .property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .property-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .property-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .property-content {
+    padding: 15px;
+  }
+  
+  .property-title {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .property-description {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    height: 63px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  
+  .property-detail {
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  
+  .detail-label {
+    font-weight: bold;
+    color: #555;
+    margin-right: 5px;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    text-transform: capitalize;
+    background-color: #eee;
+  }
+  
+  .status-badge.available {
+    background-color: #e6f4ea;
+    color: #137333;
+  }
+  
+  .status-badge.sold {
+    background-color: #fce8e6;
+    color: #c5221f;
+  }
+  
+  .status-badge.pending {
+    background-color: #fef7e0;
+    color: #ea8600;
+  }
+  
+  /* View Property Button Styling - Enhanced */
+  .view-property-button {
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 15px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .view-property-button:hover {
+    background-color: #e64a19;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .view-property-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .search-results-container {
+      flex-direction: column;
+    }
+    
+    .sidebar {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    .search-input-wrapper {
+      width: 70%;
+    }
+    
+    .property-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .back-to-home-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .back-to-home-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Make sure search-property-container has position: relative to properly position the button */
+  .search-property-container {
+    position: relative;
+    /* Keep other existing styles */
+  }

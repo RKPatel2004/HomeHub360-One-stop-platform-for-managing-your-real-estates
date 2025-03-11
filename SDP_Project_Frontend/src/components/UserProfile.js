@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {jwtDecode} from 'jwt-decode';
+import { useSelector } from 'react-redux';
+
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -16,8 +18,10 @@ const UserProfile = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [imageEditMode, setImageEditMode] = useState(false);
   const [error, setError] = useState('');
+  const user = useSelector(state => state.User);
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = user.token;
     if (!token) {
       navigate('/login');
       return;
@@ -82,7 +86,7 @@ const UserProfile = () => {
     e.preventDefault();
     setError('');
     try {
-      const token = localStorage.getItem('token');
+      const token = user.token;
       if (!token) {
         navigate('/login');
         return;

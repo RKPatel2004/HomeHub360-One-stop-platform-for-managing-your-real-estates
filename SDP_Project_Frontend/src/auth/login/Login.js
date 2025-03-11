@@ -196,9 +196,13 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
+import { useDispatch  /*, useSelector*/ } from 'react-redux';
+import { AddUser } from '../../redux/reducer/loginslice';
 
 const Login = () => {
   const navigate = useNavigate();
+  //const user = useSelector(state => state.User);
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -232,6 +236,15 @@ const Login = () => {
       } else {
         navigate('/'); // Redirect to normal user home
       }
+      localStorage.setItem('userId', response.data.user._id);
+      const usr = {
+        username: response.data.user.username,
+        role:response.data.user.role,
+        token:response.data.token,
+        uid:response.data.user._id
+      }
+      dispatch(AddUser(usr))
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid credentials');
     }
