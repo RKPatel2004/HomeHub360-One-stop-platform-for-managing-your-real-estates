@@ -56,6 +56,9 @@
     max-width: 800px;
     margin: 0 auto;
   }
+  .feature-hero-content h1{
+    color: white;
+  }
   
   .feature-icon {
     font-size: 4rem;
@@ -162,6 +165,7 @@
   .feature-cta h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: white;
   }
   
   .feature-cta p {

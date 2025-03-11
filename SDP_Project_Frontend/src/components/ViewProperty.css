@@ -1,0 +1,268 @@
+  .view-property-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+  }
+  
+  .loading-message, .error-message {
+    text-align: center;
+    padding: 40px;
+    font-size: 20px;
+  }
+  
+  .error-message {
+    color: #d9534f;
+  }
+  
+  .back-button-container {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    color: #212529;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #e9ecef;
+  }
+  
+  .back-button i {
+    margin-right: 8px;
+  }
+  
+  .property-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .property-title {
+    font-size: 32px;
+    margin: 0;
+    color: #343a40;
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .property-type-badge {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  
+  .property-images {
+    margin-bottom: 35px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .property-general-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .info-section {
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .price-info {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .location-info {
+    flex: 2;
+    min-width: 300px;
+  }
+  
+  .info-section h3 {
+    margin-top: 0;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #343a40;
+  }
+  
+  .price, .rent {
+    font-size: 28px;
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 10px;
+  }
+  
+  .property-description {
+    margin-bottom: 35px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .property-description h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 12px;
+    color: #343a40;
+    font-size: 20px;
+  }
+  
+  .property-description p {
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  
+  .specific-details {
+    margin-bottom: 35px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .specific-details h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 12px;
+    color: #343a40;
+    font-size: 20px;
+  }
+  
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+  }
+  
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .detail-label {
+    font-weight: 500;
+    color: #6c757d;
+    margin-bottom: 8px;
+    font-size: 17px;
+  }
+  
+  .detail-value {
+    font-size: 18px;
+  }
+  
+  .property-action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+  
+  .action-button {
+    padding: 14px 34px;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .buy-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .buy-button:hover {
+    background-color: #218838;
+  }
+  
+  .rent-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .rent-button:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .property-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .property-general-info {
+      flex-direction: column;
+    }
+    
+    .price-info {
+      margin-right: 0;
+      margin-bottom: 15px;
+      min-width: 100%;
+    }
+    
+    .location-info {
+      min-width: 100%;
+    }
+    
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .property-action-buttons {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .action-button {
+      width: 100%;
+    }
+  }
+  
+  /* For very small screens */
+  @media (max-width: 480px) {
+    .property-title {
+      font-size: 24px;
+    }
+    
+    .price, .rent {
+      font-size: 22px;
+    }
+    
+    .detail-label {
+      font-size: 16px;
+    }
+    
+    .detail-value {
+      font-size: 16px;
+    }
+  }
