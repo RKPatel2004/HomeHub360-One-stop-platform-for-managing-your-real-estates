@@ -19,7 +19,7 @@ const profileRoute = require("./routes/profile");
 const updateUserRoute = require("./routes/updateUser");
 const profileDetailsRoute = require("./routes/profileDetailsRoute");
 const deleteUserRoute = require("./routes/deleteUser");
-const submitPropertyRoute = require('./routes/SubmitProperty');
+const submitPropertyRoute = require("./routes/SubmitProperty");
 const getPropertyRoute = require("./routes/getProperty");
 const editPropertyRoute = require("./routes/editProperty");
 const deletePropertyRoute = require("./routes/deleteProperty");
@@ -66,8 +66,8 @@ app.use('/api/property', propertyTypeRoutes);
 
 app.use(propertyRoutes);
 
-app.get('/', (req, res) => {
-  res.send('HomeHub360 API is running...');
+app.get("/", (req, res) => {
+  res.send("HomeHub360 API is running...");
 });
 
 // Serve static files from the React frontend app
