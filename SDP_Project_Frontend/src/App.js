@@ -38,7 +38,7 @@
 
 
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './auth/signup/SignUp';
 import Login from './auth/login/Login';
@@ -48,13 +48,14 @@ import FeatureDetails from './landing/FeatureDetails';
 import ContactUs from './landing/ContactUs'; 
 import UserProfile from './components/UserProfile';
 import ManageProperty from './components/ManageProperty';
+import AdminDashboard from './components/AdminDashboard'
 import './App.css';
 
 function App() {
-  // This effect runs once when the app starts
-  useEffect(() => {
-    localStorage.removeItem("token"); // Clears the authentication token on app start
-  }, []);
+  // // This effect runs once when the app starts
+  // useEffect(() => {
+  //   localStorage.removeItem("token"); // Clears the authentication token on app start
+  // }, []);
 
   return (
     <Router>
@@ -68,6 +69,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/my_profile" element={<UserProfile />} />
           <Route path="/Manage_Property" element={<ManageProperty />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Routes>
       </div>
     </Router>
