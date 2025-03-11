@@ -392,21 +392,21 @@ const Landing = () => {
 
   const [userProfile, setUserProfile] = useState({
     profileImage: localStorage.getItem('profileImage') || '/images/logo192.png',
-    username: user.username || ''
+    username: user ? user.name : ""
   });
   const navigate = useNavigate();
 
 
   useEffect(() => {
-    const token = user.token;
+    const token = user?.token;
     setIsLoggedIn(!!token);
 
     // Update user profile from localStorage
     setUserProfile({
       profileImage: localStorage.getItem('profileImage') || '/images/logo192.png',
-      username: user.username || ''
+      username: user?.username || ''
     });
-  }, [user.username, user.token]);
+  }, [user?.username, user?.token]);
 
   const handleDeleteAccount = async () => {
     try {

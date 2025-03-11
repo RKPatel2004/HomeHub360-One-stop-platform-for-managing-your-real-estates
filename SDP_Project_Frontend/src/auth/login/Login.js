@@ -231,11 +231,7 @@ const Login = () => {
       localStorage.setItem('profileImage', user.profilePic);
 
       // Check if the user is an admin and navigate accordingly
-      if (user.role === 'admin') {
-        navigate('/admin-dashboard'); // Redirect to admin dashboard
-      } else {
-        navigate('/'); // Redirect to normal user home
-      }
+      
       localStorage.setItem('userId', response.data.user._id);
       const usr = {
         username: response.data.user.username,
@@ -244,7 +240,11 @@ const Login = () => {
         uid:response.data.user._id
       }
       dispatch(AddUser(usr))
-      navigate('/');
+      if (user.role === 'admin') {
+        navigate('/admin-dashboard'); // Redirect to admin dashboard
+      } else {
+        navigate('/'); // Redirect to normal user home
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid credentials');
     }
