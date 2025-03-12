@@ -50,8 +50,8 @@ async function login(req, res) {
         if (email === "admin@gmail.com" && password === "admin123") {
             const token = jwt.sign(
                 {
-                    // id: "67d159d2b8b6cf4c59c1b506", // You can use a static or dummy ID
-                    username: "admin",
+                    id: "admin_id", // You can use a static or dummy ID
+                    username: "Admin",
                     email: email,
                     role: "admin"
                 },
