@@ -36,6 +36,7 @@ const bookedPropertyRoutes = require('./routes/getBookedProperty'); // Add this 
 const notificationRoutes = require('./routes/notificationRoutes');
 const propertyRoutes = require('./routes/getPropertyByPropertyId');
 const propertyTypeRoutes = require('./routes/getCollectionByPropertyId');
+const analyticsRoutes = require('./routes/analyticsRoute');
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -65,8 +66,8 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api', bookedPropertyRoutes); // Add this line
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/property', propertyTypeRoutes);
-
 app.use(propertyRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 app.get("/", (req, res) => {
   res.send("HomeHub360 API is running...");

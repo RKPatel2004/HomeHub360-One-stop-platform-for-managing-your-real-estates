@@ -1,0 +1,191 @@
+/* Center the entire component on the page */
+.property-pie-chart-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .property-pie-chart-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    margin: 0 auto;
+    max-width: 900px;
+    width: 100%;
+  }
+  
+  .chart-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .chart-header h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .total-properties {
+    font-size: 18px;
+    color: #666;
+    margin: 0;
+  }
+  
+  .chart-wrapper {
+    min-height: 400px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* 3D pie chart styles without shadows */
+  .pie-3d-container {
+    position: relative;
+    width: 100%;
+    perspective: 1000px;
+  }
+  
+  .pie-3d {
+    transform: rotateX(45deg);
+    transform-origin: center;
+    transform-style: preserve-3d;
+  }
+  
+  .pie-segment {
+    transition: transform 0.2s;
+  }
+  
+  .pie-segment:hover {
+    transform: translateZ(10px) scale(1.05);
+  }
+  
+  .recharts-pie-sector:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+  
+  .property-stats-summary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 15px;
+  }
+  
+  .stat-item {
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    border-left: 5px solid;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  .stat-info {
+    flex: 1;
+  }
+  
+  .stat-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #444;
+  }
+  
+  .stat-info p {
+    margin: 0;
+    color: #666;
+  }
+  
+  .stat-percentage {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 5px !important;
+  }
+  
+  .custom-tooltip {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .tooltip-label {
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    color: #333;
+  }
+  
+  .tooltip-percentage {
+    margin: 0;
+    color: #666;
+  }
+  
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 18px;
+    color: #dc3545;
+  }
+  
+  @media (max-width: 768px) {
+    .property-pie-chart-wrapper {
+      padding: 10px;
+    }
+    
+    .property-pie-chart-container {
+      padding: 16px;
+    }
+    
+    .chart-wrapper {
+      min-height: 300px;
+    }
+    
+    .property-stats-summary {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .stat-item {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    .pie-3d {
+      transform: rotateX(35deg); /* Less extreme angle on mobile */
+    }
+  }
