@@ -36,7 +36,8 @@ const bookedPropertyRoutes = require('./routes/getBookedProperty'); // Add this 
 const notificationRoutes = require('./routes/notificationRoutes');
 const propertyRoutes = require('./routes/getPropertyByPropertyId');
 const propertyTypeRoutes = require('./routes/getCollectionByPropertyId');
-
+const deleteUserByAdminRoutes = require('./routes/deleteUserByAdmin')
+const getAllPaymentsRoutes = require('./routes/getAllPayments')
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
@@ -54,6 +55,7 @@ app.use("/api", getPropertyRoute);
 app.use("/api", editPropertyRoute);
 app.use("/api", deletePropertyRoute); 
 app.use("/api", getPropertyByIdRoute);
+// app.use('/api', deleteUserByAdminRoutes)
 app.use("/api/users", getAllUsersRoute)
 app.use("/api", searchPropertyRoute);
 app.use('/api', filterApartmentRoute);
@@ -65,7 +67,6 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api', bookedPropertyRoutes); // Add this line
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/property', propertyTypeRoutes);
-
 app.use(propertyRoutes);
 
 app.get("/", (req, res) => {
