@@ -367,12 +367,6 @@ const ViewProperty = () => {
               {property.pincode && <p>Pincode: {property.pincode}</p>}
             </div>
           </div>
-          
-          {/* <div className="property-description">
-            <h3>Description</h3>
-            <p>{property.description || 'No description available for this property.'}</p>
-          </div> */}
-          
           {renderPropertyDetails()}
           
           <div className="property-status">

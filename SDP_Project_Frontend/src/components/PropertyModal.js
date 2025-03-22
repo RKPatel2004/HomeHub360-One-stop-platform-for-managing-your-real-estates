@@ -1859,7 +1859,7 @@ const PropertyModal = ({
   // Function to format currency
   const formatCurrency = (value) => {
     if (value === undefined || value === null) return "N/A";
-    return `₹${value.toLocaleString()}`;
+    return `$${value.toLocaleString()}`;
   };
 
   // Function to format area

@@ -95,7 +95,9 @@ import {Provider} from "react-redux"
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import  store  from './redux/store';
-import PropertyPieChart from './components/PropertyPieChart';
+// import PropertyPieChart from './components/PropertyPieChart';
+import Feedback from './components/Feedback';
+// import FeedbackBarGraph from './components/FeedbackBarGraph';
 
 const pstore = persistStore(store);
 function App() {
@@ -129,7 +131,9 @@ function App() {
               {/* Add the payment result routes */}
               <Route path="/payment-success" element={<PaymentSuccess />} />
               <Route path="/payment-cancel" element={<PaymentCancel />} />
-              <Route path="/property-pie-chart" element={<PropertyPieChart />} />
+              {/* <Route path="/property-pie-chart" element={<PropertyPieChart />} /> */}
+              <Route path="/feedback" element={<Feedback />} />
+              {/* <Route path="/feedback-bargraph" element={<FeedbackBarGraph />} /> */}
             </Routes>
           </div>
         </Router>

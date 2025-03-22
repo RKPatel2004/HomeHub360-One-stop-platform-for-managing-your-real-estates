@@ -66,8 +66,11 @@ const express = require("express");
 const router = express.Router();
 const { getAllUsers } = require("../controllers/getAllUsers");
 const verifyToken = require("../middleware/auth");
-
+const { deleteUserByAdmin } = require("../controllers/deleteUserByAdmin");
 // Route to get all users - protected with authentication middleware
 router.get("/", verifyToken, getAllUsers);
+
+router.delete("/users/:userId", verifyToken, deleteUserByAdmin);
+
 
 module.exports = router;

@@ -624,7 +624,7 @@ const SearchProperty = () => {
                       <p className="property-description">{property.description || 'No description available'}</p>
                       <p className="property-detail">
                         <span className="detail-label">Price:</span>
-                        {property.price ? `₹${property.price.toLocaleString()}` : "N/A"}
+                        {property.price ? `$${property.price.toLocaleString()}` : "N/A"}
                       </p>
                       <p className="property-detail">
                         <span className="detail-label">Location:</span>

@@ -85,6 +85,10 @@
     gap: 20px;
     flex-wrap: wrap;
   }
+  .property-status h3,p{
+    font-size: 15px;
+    color: white;
+  }
   
   .info-section {
     padding: 25px;

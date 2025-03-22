@@ -7,7 +7,6 @@ const paymentSchema = new mongoose.Schema({
   },
   propertyId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Property',
     required: true
   },
   ownerId: {

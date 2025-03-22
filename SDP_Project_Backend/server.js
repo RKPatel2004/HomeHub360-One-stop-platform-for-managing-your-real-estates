@@ -37,6 +37,10 @@ const notificationRoutes = require('./routes/notificationRoutes');
 const propertyRoutes = require('./routes/getPropertyByPropertyId');
 const propertyTypeRoutes = require('./routes/getCollectionByPropertyId');
 const analyticsRoutes = require('./routes/analyticsRoute');
+const feedbackRoute = require("./routes/feedbackRoute");
+const deleteUserByAdminRoutes = require('./routes/deleteUserByAdmin');
+const getAllPaymentsRoutes = require('./routes/getAllPayments');
+const feedbackGraphRoutes = require('./routes/feedbackGraphRoutes');
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -55,6 +59,7 @@ app.use("/api", getPropertyRoute);
 app.use("/api", editPropertyRoute);
 app.use("/api", deletePropertyRoute); 
 app.use("/api", getPropertyByIdRoute);
+// app.use('/api', deleteUserByAdminRoutes)
 app.use("/api/users", getAllUsersRoute)
 app.use("/api", searchPropertyRoute);
 app.use('/api', filterApartmentRoute);
@@ -68,6 +73,8 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/property', propertyTypeRoutes);
 app.use(propertyRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api', feedbackRoute);
+app.use('/api', feedbackGraphRoutes);
 
 app.get("/", (req, res) => {
   res.send("HomeHub360 API is running...");

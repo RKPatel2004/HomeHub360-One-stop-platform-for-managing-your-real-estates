@@ -110,6 +110,7 @@
     right: 10px;
     background: #2ecc71;
     color: white;
+    padding-bottom: 10px;
   }
   
   .property-status:not([status="available"]) {
