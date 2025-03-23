@@ -62,7 +62,7 @@ app.use("/api", getPropertyRoute);
 app.use("/api", editPropertyRoute);
 app.use("/api", deletePropertyRoute); 
 app.use("/api", getPropertyByIdRoute);
-// app.use('/api', deleteUserByAdminRoutes)
+app.use('/api', deleteUserByAdminRoutes)
 app.use("/api/users", getAllUsersRoute)
 app.use("/api", searchPropertyRoute);
 app.use('/api', filterApartmentRoute);

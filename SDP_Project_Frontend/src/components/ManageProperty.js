@@ -208,7 +208,7 @@ const ManageProperty = () => {
                             setShowNotifications(false);
                         }}
                     >
-                        Dashboard
+                        {/* Dashboard */} My Properties
                     </button>
                     <button
                         className={`nav-link ${activeTab === 'submit' ? 'active' : ''}`}
@@ -226,7 +226,7 @@ const ManageProperty = () => {
                             setShowNotifications(false);
                         }}
                     >
-                        My Analysis
+                        {/* My Analysis */} Dashboard
                     </button>
                 </div>
                 <div className="user-greeting">

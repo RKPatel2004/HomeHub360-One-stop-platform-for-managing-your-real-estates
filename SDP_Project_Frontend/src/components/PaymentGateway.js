@@ -143,7 +143,7 @@ const PaymentGateway = ({ propertyId, amount, paymentType, description, onClose 
       <h2>Payment Details</h2>
       
       <div className="payment-summary">
-        <p><strong>Amount:</strong> ₹{amount?.toLocaleString() || '0'}</p>
+        <p><strong>Amount:</strong> ${amount?.toLocaleString() || '0'}</p>
         <p><strong>Payment Type:</strong> {paymentType === 'BOOKING' ? 'Purchase' : paymentType}</p>
         {description && <p><strong>Description:</strong> {description}</p>}
       </div>

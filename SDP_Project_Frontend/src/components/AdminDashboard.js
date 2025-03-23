@@ -577,29 +577,29 @@ function AdminDashboard() {
   };
 
   // Delete property function
-  const handleDeleteProperty = async (propertyId) => {
-    if (!window.confirm("Are you sure you want to delete this property?")) {
-      return;
-    }
+  // const handleDeleteProperty = async (propertyId) => {
+  //   if (!window.confirm("Are you sure you want to delete this property?")) {
+  //     return;
+  //   }
 
-    try {
-      const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/properties/${propertyId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     await axios.delete(`http://localhost:5000/api/properties/${propertyId}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      // Update properties list after successful deletion
-      setProperties(
-        properties.filter((property) => property._id !== propertyId)
-      );
-      alert("Property deleted successfully");
-    } catch (err) {
-      alert(err.response?.data?.message || "Failed to delete property");
-      console.error("Error deleting property:", err);
-    }
-  };
+  //     // Update properties list after successful deletion
+  //     setProperties(
+  //       properties.filter((property) => property._id !== propertyId)
+  //     );
+  //     alert("Property deleted successfully");
+  //   } catch (err) {
+  //     alert(err.response?.data?.message || "Failed to delete property");
+  //     console.error("Error deleting property:", err);
+  //   }
+  // };
 
   // Load data when the component mounts based on active tab
   useEffect(() => {
@@ -709,18 +709,18 @@ function AdminDashboard() {
                 <table className="min-w-full">
                   <thead>
                     <tr>
-                      <th className="text-left p-2">ID</th>
-                      <th className="text-left p-2">Name</th>
-                      <th className="text-left p-2">Email</th>
-                      <th className="text-left p-2">Role</th>
-                      <th className="text-left p-2">Actions</th>
+                      <th className="text-center p-2">ID</th>
+                      <th className="text-center p-2">Name</th>
+                      <th className="text-center p-2">Email</th>
+                      <th className="text-center p-2">Role</th>
+                      <th className="text-center p-2">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {users.length > 0 ? (
                       users.map((user) => (
                         <tr key={user._id} className="border-t">
-                          <td className="p-2">{user._id.substring(0, 6)}...</td>
+                          <td className="p-2">{user._id}</td>
                           <td className="p-2">{user.username}</td>
                           <td className="p-2">{user.email}</td>
                           <td className="p-2">{user.role}</td>
@@ -763,12 +763,12 @@ function AdminDashboard() {
                 <table className="min-w-full">
                   <thead>
                     <tr>
-                      <th className="text-left p-2">ID</th>
-                      <th className="text-left p-2">Name</th>
-                      <th className="text-left p-2">Type</th>
-                      <th className="text-left p-2">City</th>
-                      <th className="text-left p-2">Status</th>
-                      <th className="text-left p-2">Actions</th>
+                      <th className="text-center p-2">ID</th>
+                      <th className="text-center p-2">Name</th>
+                      <th className="text-center p-2">Type</th>
+                      <th className="text-center p-2">City</th>
+                      <th className="text-center p-2">Status</th>
+                      {/* <th className="text-left p-2">Actions</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -776,7 +776,7 @@ function AdminDashboard() {
                       properties.map((property) => (
                         <tr key={property._id} className="border-t">
                           <td className="p-2">
-                            {property._id.substring(0, 6)}...
+                            {property._id}
                           </td>
                           <td className="p-2">{property.title || "N/A"}</td>
                           <td className="p-2 capitalize">{property.type}</td>
@@ -794,14 +794,14 @@ function AdminDashboard() {
                               {property.status || "N/A"}
                             </span>
                           </td>
-                          <td className="p-2">
+                          {/* <td className="p-2">
                             <button
                               onClick={() => handleDeleteProperty(property._id)}
                               className="text-red-500 hover:text-red-700"
                             >
                               Delete
                             </button>
-                          </td>
+                          </td> */}
                         </tr>
                       ))
                     ) : (
@@ -833,12 +833,12 @@ function AdminDashboard() {
                 <table className="min-w-full">
                   <thead>
                     <tr>
-                      <th className="text-left p-2">Payment ID</th>
-                      <th className="text-left p-2">Username</th>
-                      <th className="text-left p-2">Owner Name</th>
-                      <th className="text-left p-2">Property Name</th>
-                      <th className="text-left p-2">Payment Type</th>
-                      <th className="text-left p-2">Amount</th>
+                      <th className="text-center p-2">Payment ID</th>
+                      <th className="text-center p-2">Username</th>
+                      <th className="text-center p-2">Owner Name</th>
+                      {/* <th className="text-left p-2">Property Name</th> */}
+                      <th className="text-center p-2">Payment Type</th>
+                      <th className="text-center p-2">Amount</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -846,7 +846,7 @@ function AdminDashboard() {
                       payments.map((payment) => (
                         <tr key={payment._id} className="border-t">
                           <td className="p-2">
-                            {payment._id.substring(0, 6)}...
+                            {payment._id/*.substring(0, 6)*/}
                           </td>
                           <td className="p-2">
                             {payment.userId?.username || "N/A"}
@@ -854,9 +854,9 @@ function AdminDashboard() {
                           <td className="p-2">
                             {payment.ownerId?.username || "N/A"}
                           </td>
-                          <td className="p-2">
+                          {/* <td className="p-2">
                             {payment.propertyId?.title || "N/A"}
-                          </td>
+                          </td> */}
                           <td className="p-2 capitalize">
                             {payment.paymentType || "N/A"}
                           </td>

@@ -212,7 +212,8 @@ const getBookedProperties = async (req, res) => {
     const bookedProperties = [];
 
     // Fixed date for testing (March 14, 2025)
-    const fixedNow = new Date('2025-03-14T16:19:12.740+00:00');
+    // const fixedNow = new Date('2025-03-14T16:19:12.740+00:00');
+    const fixedNow = new Date();
     
     // Helper function to add properties to result array and handle rental timer
     const addPropertiesToResult = async (properties, type, Model) => {

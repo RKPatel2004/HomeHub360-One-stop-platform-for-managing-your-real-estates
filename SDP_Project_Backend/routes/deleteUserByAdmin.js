@@ -24,6 +24,6 @@ const verifyToken = require("../middleware/auth");
 
 // Get all users route - accessible only by admin
 // router.get("/", verifyToken, getAllUsers);
-
+router.delete("/users/:userId", verifyToken, deleteUserByAdmin);
 
 module.exports = router;

@@ -126,7 +126,7 @@ const BookProperty = () => {
             className={`nav-link ${activeTab === 'dashboard' ? 'active' : ''}`}
             onClick={() => setActiveTab('dashboard')}
           >
-            Dashboard
+            {/* Dashboard */} Booked Properties
           </button>
           <button 
             className={`nav-link ${activeTab === 'search' ? 'active' : ''}`}
@@ -138,7 +138,7 @@ const BookProperty = () => {
             className={`nav-link ${activeTab === 'analytics' ? 'active' : ''}`}
             onClick={() => setActiveTab('analytics')}
           >
-            My Analysis
+            {/* My Analysis */} Dashboard
           </button>
         </div>
         <div className="user-greeting">

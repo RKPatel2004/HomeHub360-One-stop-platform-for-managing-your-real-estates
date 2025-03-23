@@ -17,21 +17,21 @@
 
 //   const [userProfile, setUserProfile] = useState({
 //     profileImage: localStorage.getItem('profileImage') || '/images/logo192.png',
-//     username: user.username || ''
+//     username: user ? user.name : ""
 //   });
 //   const navigate = useNavigate();
 
 
 //   useEffect(() => {
-//     const token = user.token;
+//     const token = user?.token;
 //     setIsLoggedIn(!!token);
 
 //     // Update user profile from localStorage
 //     setUserProfile({
 //       profileImage: localStorage.getItem('profileImage') || '/images/logo192.png',
-//       username: user.username || ''
+//       username: user?.username || ''
 //     });
-//   }, [user.username, user.token]);
+//   }, [user?.username, user?.token]);
 
 //   const handleDeleteAccount = async () => {
 //     try {
@@ -105,6 +105,13 @@
 //       navigate(`/signup?role=${role}`);
 //     }
 //   };
+  
+//   const scrollToSection = (sectionId) => {
+//     const section = document.getElementById(sectionId);
+//     if (section) {
+//       section.scrollIntoView({ behavior: 'smooth' });
+//     }
+//   };
 
 //   const features = [
 //     {
@@ -148,7 +155,7 @@
 //             onMouseEnter={() => setShowFeatureMenu(true)}
 //             onMouseLeave={() => setShowFeatureMenu(false)}
 //           >
-//             <a href="#features">Features</a>
+//             <a href="#features" onClick={(e) => { e.preventDefault(); scrollToSection('features'); }}>Features</a>
 //             {showFeatureMenu && (
 //               <div className="dropdown-menu">
 //                 {features.map(feature => (
@@ -163,7 +170,7 @@
 //               </div>
 //             )}
 //           </div>
-//           <a href="#how-it-works">How It Works</a>
+//           <a href="#how-it-works" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works'); }}>How It Works</a>
 //           <Link to="/contact">Contact</Link>
 //         </div>
 //         <div className="auth-buttons">
@@ -231,7 +238,7 @@
 //                 </div>
 //               )}
 //             </div>
-//             <a href="#features" className="secondary-button">Learn More</a>
+//             <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }} className="secondary-button">Learn More</a>
 //           </div>
 //         </div>
 //       </section>
@@ -378,7 +385,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import Modal from '../components/Modal';
 import './Landing.css';
 import './ContactUs.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { DeleteUser } from '../redux/reducer/loginslice';
 
 
 const Landing = () => {
@@ -389,6 +397,7 @@ const Landing = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const user = useSelector(state => state.User);
+  const dispatch = useDispatch();
 
   const [userProfile, setUserProfile] = useState({
     profileImage: localStorage.getItem('profileImage') || '/images/logo192.png',
@@ -456,6 +465,7 @@ const Landing = () => {
     localStorage.removeItem('username');
     localStorage.removeItem('profileImage');
     localStorage.removeItem('role');
+    dispatch(DeleteUser(null))
     
     // Update state
     setIsLoggedIn(false);
@@ -598,18 +608,22 @@ const Landing = () => {
               <button className="cta-button">Get Started</button>
               {showGetStartedMenu && (
                 <div className="get-started-menu">
-                  <button 
-                    className="dropdown-item"
-                    onClick={() => handleGetStartedClick('owner')}
-                  >
-                    Manage Property
-                  </button>
-                  <button 
-                    className="dropdown-item"
-                    onClick={() => handleGetStartedClick('customer')}
-                  >
-                    Book Property
-                  </button>
+                  {!isLoggedIn || localStorage.getItem('role') === 'owner' ? (
+                    <button 
+                      className="dropdown-item"
+                      onClick={() => handleGetStartedClick('owner')}
+                    >
+                      Manage Property
+                    </button>
+                  ) : null}
+                  {!isLoggedIn || localStorage.getItem('role') === 'customer' ? (
+                    <button 
+                      className="dropdown-item"
+                      onClick={() => handleGetStartedClick('customer')}
+                    >
+                      Book Property
+                    </button>
+                  ) : null}
                 </div>
               )}
             </div>
