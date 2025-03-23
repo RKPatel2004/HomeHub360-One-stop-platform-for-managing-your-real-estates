@@ -41,6 +41,9 @@ const feedbackRoute = require("./routes/feedbackRoute");
 const deleteUserByAdminRoutes = require('./routes/deleteUserByAdmin');
 const getAllPaymentsRoutes = require('./routes/getAllPayments');
 const feedbackGraphRoutes = require('./routes/feedbackGraphRoutes');
+const ownerAnalysisRoutes = require('./routes/ownerAnalysis');
+const customerAnalysisRoutes = require('./routes/customerAnalysis');
+const getAllFeedbacksRoute = require('./routes/getAllFeedbacks');
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -75,6 +78,9 @@ app.use(propertyRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api', feedbackRoute);
 app.use('/api', feedbackGraphRoutes);
+app.use('/api/analytics', ownerAnalysisRoutes);
+app.use('/api/customer-analytics', customerAnalysisRoutes);
+app.use('/api', getAllFeedbacksRoute);
 
 app.get("/", (req, res) => {
   res.send("HomeHub360 API is running...");
