@@ -11,7 +11,6 @@ const PaymentGateway = ({ propertyId, amount, paymentType, description, onClose 
 
 
   
-  // Fetch the owner ID when component mounts
   useEffect(() => {
     const fetchPropertyDetails = async () => {
       try {

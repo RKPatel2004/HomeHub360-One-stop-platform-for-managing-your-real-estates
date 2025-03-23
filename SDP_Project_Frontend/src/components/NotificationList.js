@@ -11,7 +11,6 @@ const NotificationList = () => {
     const [expandedNotifications, setExpandedNotifications] = useState({});
     const user = useSelector(state => state.User);
     
-    // const token = localStorage.getItem('token');
     const token = user.token;
 
     useEffect(() => {

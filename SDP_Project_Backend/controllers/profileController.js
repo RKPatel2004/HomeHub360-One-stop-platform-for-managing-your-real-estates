@@ -1,11 +1,9 @@
 const User = require("../models/users");
 
-// Controller function to fetch user profile
 const getUserProfile = async (req, res) => {
   try {
-    const userId = req.user.id; // Extracted from decoded token
+    const userId = req.user.id; 
 
-    // Fetch user details from the database
     const user = await User.findById(userId).select("username email phone profilePic");
 
     if (!user) {

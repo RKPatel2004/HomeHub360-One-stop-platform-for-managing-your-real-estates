@@ -14,31 +14,26 @@ const filterFarmhouses = async (req, res) => {
       address
     } = req.body;
 
-    // Ensure the propertyType is "farmhouse"
     if (!propertyType || propertyType.toLowerCase() !== 'farmhouse') {
       return res.status(400).json({ message: 'Invalid or missing propertyType. Must be "farmhouse".' });
     }
 
     let filterCriteria = {};
 
-    // Garden Area should be greater than or equal to the provided value
     if (gardenArea) {
       filterCriteria.gardenArea = { $gte: parseInt(gardenArea) };
     }
 
-    // Swimming Pool filter (convert "true"/"false" from form-data to boolean)
     if (swimmingPool === 'true') {
       filterCriteria.swimmingPool = true;
     } else if (swimmingPool === 'false') {
       filterCriteria.swimmingPool = false;
     }
 
-    // Furnishing status filter
     if (furnishingStatus) {
       filterCriteria.furnishingStatus = furnishingStatus;
     }
 
-    // Sale filters
     if (isForSale === 'true') {
       filterCriteria.isForSale = true;
       if (price) {
@@ -46,7 +41,6 @@ const filterFarmhouses = async (req, res) => {
       }
     }
 
-    // Rent filters
     if (isForRent === 'true') {
       filterCriteria.isForRent = true;
       if (rentPrice) {
@@ -55,10 +49,9 @@ const filterFarmhouses = async (req, res) => {
     }
 
     if (address) {
-      filterCriteria.address = { $regex: new RegExp(address, 'i') }; // Case-insensitive match
+      filterCriteria.address = { $regex: new RegExp(address, 'i') }; 
     }
 
-    // Find farmhouses matching the criteria
     const farmhouses = await Farmhouse.find(filterCriteria);
 
     if (farmhouses.length === 0) {

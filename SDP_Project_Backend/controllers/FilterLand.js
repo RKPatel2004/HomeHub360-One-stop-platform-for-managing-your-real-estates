@@ -10,7 +10,7 @@ exports.filterLand = async (req, res) => {
       isForRent, 
       rentPrice, 
       price,
-      address // New field added for filtering
+      address 
     } = req.body;
 
     if (propertyType !== 'land') {
@@ -19,38 +19,32 @@ exports.filterLand = async (req, res) => {
 
     let query = {};
 
-    // Filter by area if provided
     if (area) {
-      query.area = { $gte: Number(area) }; // Only lands greater than or equal to requested area
+      query.area = { $gte: Number(area) }; 
     }
 
-    // Filter by zoningType if provided
     if (zoningType) {
       query.zoningType = zoningType;
     }
 
-    // Filter by sale status
     if (isForSale === 'true') {
       query.isForSale = true;
       if (price) {
-        query.price = { $lte: Number(price) }; // Price should be less than or equal to given value
+        query.price = { $lte: Number(price) }; 
       }
     }
 
-    // Filter by rent status
     if (isForRent === 'true') {
       query.isForRent = true;
       if (rentPrice) {
-        query.rentPrice = { $lte: Number(rentPrice) }; // Rent price should be less than or equal to given value
+        query.rentPrice = { $lte: Number(rentPrice) }; 
       }
     }
 
-    // **Filter by address if provided**
     if (address) {
-      query.address = { $regex: new RegExp(address, "i") }; // Case-insensitive search
+      query.address = { $regex: new RegExp(address, "i") }; 
     }
 
-    // Fetch filtered properties
     const lands = await Land.find(query);
 
     if (lands.length === 0) {

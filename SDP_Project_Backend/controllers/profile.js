@@ -2,10 +2,9 @@ const User = require("../models/users");
 const multer = require("multer");
 const path = require("path");
 
-// Configure Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/profilePics"); // Directory for storing uploaded profile pictures
+    cb(null, "./uploads/profilePics"); 
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
@@ -14,7 +13,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 2 * 1024 * 1024 }, // Limit file size to 2MB
+  limits: { fileSize: 2 * 1024 * 1024 }, 
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png/;
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
@@ -28,7 +27,6 @@ const upload = multer({
   },
 });
 
-// Controller to handle profile photo upload
 const uploadProfilePhoto = async (req, res) => {
   try {
     const { userId } = req.body;
@@ -39,7 +37,6 @@ const uploadProfilePhoto = async (req, res) => {
 
     const filePath = req.file.path;
 
-    // Update user's profilePic field in the database
     const user = await User.findByIdAndUpdate(
       userId,
       { profilePic: filePath },
@@ -57,7 +54,6 @@ const uploadProfilePhoto = async (req, res) => {
   }
 };
 
-// Controller to serve the profile photo
 const getProfilePhoto = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -75,29 +71,25 @@ const getProfilePhoto = async (req, res) => {
   }
 };
 
-// Controller to update user profile information
 const updateUserProfile = async (req, res) => {
   try {
     const { userId, username, password, email, phone } = req.body;
 
-    // Find user by ID
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Update username, email, and phone directly
     user.username = username || user.username;
     user.email = email || user.email;
     user.phone = phone || user.phone;
 
-    // If password is provided, hash it and update the field
     if (password) {
-      const salt = await bcrypt.genSalt(10); // Generate salt for hashing
-      user.password = await bcrypt.hash(password, salt); // Hash the new password
+      const salt = await bcrypt.genSalt(10); 
+      user.password = await bcrypt.hash(password, salt); 
     }
 
-    // Save updated user details
+    
     const updatedUser = await user.save();
 
     res.status(200).json({
@@ -114,4 +106,4 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-module.exports = { upload, uploadProfilePhoto, getProfilePhoto/*, updateUserProfile*/ };
+module.exports = { upload, uploadProfilePhoto, getProfilePhoto };

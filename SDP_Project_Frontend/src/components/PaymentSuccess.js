@@ -17,12 +17,10 @@ const PaymentSuccess = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  // Use useMemo to prevent searchParams from being recreated on every render
   const searchParams = useMemo(() => {
     return new URLSearchParams(location.search);
   }, [location.search]);
   
-  // Get orderId from searchParams - this is what we'll receive from the backend redirect
   const orderId = useMemo(() => searchParams.get('orderId'), [searchParams]);
   
   useEffect(() => {
@@ -31,7 +29,6 @@ const PaymentSuccess = () => {
         if (orderId) {
           console.log('Order ID:', orderId);
           
-          // Try to get the token from localStorage
           const token = user.token;
           console.log('Token:', token);
           const config = token 
@@ -46,7 +43,6 @@ const PaymentSuccess = () => {
           console.log('Payment details response:', data);
           
           if (data.success) {
-            // If a new token is returned, update it
             if (data.token) {
               localStorage.setItem('token', data.token);
             }
@@ -73,13 +69,11 @@ const PaymentSuccess = () => {
   }, [orderId, user.token]);
   
   const handleDashboardClick = () => {
-    // Check if token exists before navigating
     const token = user.token;
     console.log('Token:', token);
     if (token) {
       navigate('/customer_dashboard');
     } else {
-      // If no token, redirect to login
       navigate('/login');
     }
   };

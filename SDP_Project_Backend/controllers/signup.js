@@ -7,20 +7,16 @@ async function createUser(req, res) {
         const userData = req.body;
         const { username, password, email, phone, role } = userData;
 
-        // Email validation regex
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        // Phone number validation
         if (!/^\d{10}$/.test(phone)) {
             return res.status(400).json({ message: "Phone number must be exactly 10 digits." });
         }
 
-        // Email format validation
         if (!emailRegex.test(email)) {
             return res.status(400).json({ message: "Invalid email format." });
         }
 
-        // Check if the username, email, or phone already exists
         const existingUser = await User.findOne({
             $or: [{ username: username }, { email: email }, { phone: phone }]
         });

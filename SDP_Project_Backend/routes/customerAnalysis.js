@@ -1,4 +1,3 @@
-// routes/customerAnalysis.js
 const express = require('express');
 const router = express.Router();
 const customerAnalysisController = require('../controllers/customerAnalysis');

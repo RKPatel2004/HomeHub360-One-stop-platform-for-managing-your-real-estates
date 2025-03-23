@@ -5,10 +5,9 @@ const Office = require("../models/office");
 const path = require('path')
 const multer = require("multer");
 
-// Configure Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./uploads/properties"); // Directory for storing uploaded profile pictures
+    cb(null, "./uploads/properties"); 
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
@@ -17,7 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 2 * 1024 * 1024 }, // Limit file size to 2MB
+  limits: { fileSize: 2 * 1024 * 1024 }, 
   fileFilter: (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png/;
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
@@ -42,7 +41,6 @@ const submitProperty = async (req, res) => {
 
     const ownerId = req.user.id;
     console.log(req.files)
-    // Store multiple image paths
     const imagePaths = req.files ? req.files['images[]'].map(file => `/uploads/properties/${file.filename}`) : [];
 
     let property;

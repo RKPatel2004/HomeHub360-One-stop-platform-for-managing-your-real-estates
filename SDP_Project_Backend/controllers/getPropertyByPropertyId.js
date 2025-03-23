@@ -12,13 +12,11 @@ const Office = require('../models/office');
 exports.getPropertyByPropertyId = async (req, res) => {
   const { propertyId } = req.params;
 
-  // Validate if propertyId is a valid MongoDB ObjectId
   if (!mongoose.Types.ObjectId.isValid(propertyId)) {
     return res.status(400).json({ success: false, message: 'Invalid property ID format' });
   }
 
   try {
-    // Check each collection for the property
     const collections = [
       { model: Apartment, name: 'apartment' },
       { model: Farmhouse, name: 'farmhouse' },

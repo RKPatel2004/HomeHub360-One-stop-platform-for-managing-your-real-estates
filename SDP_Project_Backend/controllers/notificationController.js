@@ -142,114 +142,29 @@ exports.deleteNotification = async (req, res) => {
   }
 };
 
-// // Utility function to create a payment notification (to be used by payment controller)
-// exports.createPaymentNotification = async (payment) => {
-//   try {
-//     // Check if we have both user and owner IDs
-//     if (!payment.userId || !payment.ownerId) {
-//       console.error('Missing user or owner ID for notification');
-//       return null;
-//     }
-    
-//     // Get user info (customer who made the payment)
-//     const user = await User.findById(payment.userId);
-//     if (!user) {
-//       console.error(`User not found with ID: ${payment.userId}`);
-//       return null;
-//     }
-    
-//     // Create property type and URL
-//     let propertyType = 'property';
-//     let propertyDetailsPath = `/property/${payment.propertyId}`;
-    
-//     // Payment type in more readable format
-//     let paymentTypeText = {
-//       'BOOKING': 'booking',
-//       'RENT': 'rent',
-//       'MAINTENANCE': 'maintenance fee',
-//       'DEPOSIT': 'deposit'
-//     }[payment.paymentType] || payment.paymentType.toLowerCase();
-    
-//     // Create notification for the owner
-//     const ownerNotification = new Notification({
-//       userId: payment.ownerId, // Send to property owner
-//       message: `${user.username} has made a ${paymentTypeText} payment of ${payment.amount} ${payment.currency} for your property.`,
-//       type: 'payment',
-//       relatedId: payment.propertyId,
-//       details: {
-//         paymentId: payment._id,
-//         paymentType: payment.paymentType,
-//         amount: payment.amount,
-//         currency: payment.currency,
-//         customerName: user.username,
-//         customerId: payment.userId,
-//         propertyId: payment.propertyId,
-//         timestamp: new Date()
-//       }
-//     });
-    
-//     // Create notification for the customer
-//     const customerNotification = new Notification({
-//       userId: payment.userId, // Send to the customer
-//       message: `Your ${paymentTypeText} payment of ${payment.amount} ${payment.currency} was successful.`,
-//       type: 'payment',
-//       relatedId: payment.propertyId,
-//       details: {
-//         paymentId: payment._id,
-//         paymentType: payment.paymentType,
-//         amount: payment.amount,
-//         currency: payment.currency,
-//         ownerId: payment.ownerId,
-//         propertyId: payment.propertyId,
-//         timestamp: new Date()
-//       }
-//     });
-    
-//     // Save both notifications
-//     await Promise.all([
-//       ownerNotification.save(),
-//       customerNotification.save()
-//     ]);
-    
-//     console.log(`Created payment notifications for owner ${payment.ownerId} and customer ${payment.userId}`);
-//     return { ownerNotification, customerNotification };
-//   } catch (error) {
-//     console.error('Error creating payment notification:', error);
-//     return null;
-//   }
-// };
-
-
-// Utility function to create a payment notification (to be used by payment controller)
 exports.createPaymentNotification = async (payment) => {
   try {
-    // Check if we have both user and owner IDs
     if (!payment.userId || !payment.ownerId) {
       console.error('Missing user or owner ID for notification');
       return null;
     }
     
-    // Get user info (customer who made the payment)
     const user = await User.findById(payment.userId);
     if (!user) {
       console.error(`User not found with ID: ${payment.userId}`);
       return null;
     }
     
-    // Fetch property info to get property type
     let propertyName = 'Property';
     let propertyType = 'property';
     let propertyDetailsPath = `/property/${payment.propertyId}`;
     
-    // Try to find property in each model
     try {
-      // Import models dynamically to avoid circular dependencies
       const Apartment = require('../models/apartment');
       const Farmhouse = require('../models/farmhouse');
       const Land = require('../models/land');
       const Office = require('../models/office');
       
-      // Check each model
       const apartment = await Apartment.findById(payment.propertyId);
       if (apartment) {
         propertyName = apartment.name || apartment.title || 'Apartment';
@@ -275,10 +190,8 @@ exports.createPaymentNotification = async (payment) => {
       }
     } catch (err) {
       console.error('Error fetching property details:', err);
-      // Continue with default values if there's an error
     }
     
-    // Payment type in more readable format
     let paymentTypeText = {
       'BOOKING': 'booking',
       'RENT': 'rent',
@@ -286,9 +199,8 @@ exports.createPaymentNotification = async (payment) => {
       'DEPOSIT': 'deposit'
     }[payment.paymentType] || payment.paymentType.toLowerCase();
     
-    // Create notification for the owner
     const ownerNotification = new Notification({
-      userId: payment.ownerId, // Send to property owner
+      userId: payment.ownerId, 
       message: `${user.username} has made a ${paymentTypeText} payment of ${payment.amount} ${payment.currency} for your property.`,
       type: 'payment',
       relatedId: payment.propertyId,

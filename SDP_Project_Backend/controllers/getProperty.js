@@ -5,13 +5,11 @@ const Office = require("../models/office");
 
 exports.getProperties = async (req, res) => {
   try {
-    // Fetch all properties from different collections
     const apartments = await Apartment.find({});
     const farmhouses = await Farmhouse.find({});
     const lands = await Land.find({});
     const offices = await Office.find({});
 
-    // Combine all properties into a single array
     const allProperties = [
       ...apartments.map((property) => ({ type: "apartment", ...property._doc })),
       ...farmhouses.map((property) => ({ type: "farmhouse", ...property._doc })),

@@ -6,7 +6,6 @@ import './FeedbackBarGraph.css';
 const FeedbackBarGraph = () => {
     const [data, setData] = useState([]);
     
-    // Color palette for different property types
     const COLORS = [
         '#4caf50', // green
         '#2196f3', // blue

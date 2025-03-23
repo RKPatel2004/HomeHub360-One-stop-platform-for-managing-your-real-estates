@@ -7,7 +7,6 @@ const getPropertyById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Search property in different collections
         let property =
             await Apartment.findById(id) ||
             await Farmhouse.findById(id) ||

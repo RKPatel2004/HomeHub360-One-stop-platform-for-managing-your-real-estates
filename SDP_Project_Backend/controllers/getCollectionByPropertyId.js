@@ -13,7 +13,6 @@ const getPropertyType = async (req, res) => {
   try {
     const { propertyId } = req.params;
 
-    // Validate that propertyId is a valid MongoDB ObjectId
     if (!mongoose.Types.ObjectId.isValid(propertyId)) {
       return res.status(400).json({
         success: false,
@@ -21,7 +20,6 @@ const getPropertyType = async (req, res) => {
       });
     }
 
-    // Check each collection to find the property
     const collections = [
       { model: Apartment, type: 'apartment' },
       { model: Farmhouse, type: 'farmhouse' },
@@ -33,7 +31,6 @@ const getPropertyType = async (req, res) => {
     let propertyData = null;
     let propertyType = null;
 
-    // Search for the property in each collection
     for (const collection of collections) {
       const property = await collection.model.findById(propertyId);
       if (property) {

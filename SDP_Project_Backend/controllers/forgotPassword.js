@@ -6,7 +6,6 @@ async function forgot_password(req, res) {
     const { email, newPassword, confirmPassword } = req.body;
 
     console.log(email, newPassword, confirmPassword);
-    // Validate input
     if (!email || !newPassword || !confirmPassword) {
       return res.status(400).json({ message: "All fields are required." });
     }
@@ -15,7 +14,6 @@ async function forgot_password(req, res) {
       return res.status(400).json({ message: "Passwords do not match." });
     }
 
-    // Check if the user exists
     const user = await User.findOne({ email });
     if (!user) {
       return res
@@ -23,10 +21,8 @@ async function forgot_password(req, res) {
         .json({ message: "User with this email does not exist." });
     }
 
-    // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Update the user's password in the database
     user.password = hashedPassword;
     await user.save();
 
