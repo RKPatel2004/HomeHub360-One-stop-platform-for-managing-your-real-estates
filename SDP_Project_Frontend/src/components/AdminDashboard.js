@@ -1,23 +1,26 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import PropertyPieChart from "./PropertyPieChart";
 import FeedbackBarGraph from "./FeedbackBarGraph";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [users, setUsers] = useState([]);
   const [properties, setProperties] = useState([]);
   const [payments, setPayments] = useState([]);
+  const [monthlyUsers, setMonthlyUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   
-  // Function to handle sidebar navigation
   const handleNavigation = (tab) => {
     setActiveTab(tab);
     if (tab === "users") {
       fetchUsers();
+      fetchMonthlyUsers();
     }
     if (tab === "properties") {
       fetchProperties();
@@ -27,23 +30,20 @@ function AdminDashboard() {
     }
   };
 
-  // Function to handle logout
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('profileImage');
     localStorage.removeItem('role');
     
-    // Redirect to home page
     navigate('/login', { replace: true });
   };
 
-  // Fetch all users
   const fetchUsers = async () => {
     setLoading(true);
     setError(null);
     try {
-      const token = localStorage.getItem("token"); // Assuming token is stored in localStorage
+      const token = localStorage.getItem("token");
       const response = await axios.get("http://localhost:5000/api/users", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,7 +58,25 @@ function AdminDashboard() {
     }
   };
 
-  // Fetch all properties
+  const fetchMonthlyUsers = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get("http://localhost:5000/api/analytics/monthly-unique-users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setMonthlyUsers(response.data.data);
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to fetch monthly users");
+      console.error("Error fetching monthly users:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchProperties = async () => {
     setLoading(true);
     setError(null);
@@ -81,7 +99,6 @@ function AdminDashboard() {
     }
   };
 
-  // Fetch all payments
   const fetchPayments = async () => {
     setLoading(true);
     setError(null);
@@ -104,7 +121,6 @@ function AdminDashboard() {
     }
   };
 
-  // Delete user function
   const handleDeleteUser = async (userId) => {
     if (!window.confirm("Are you sure you want to delete this user?")) {
       return;
@@ -118,7 +134,6 @@ function AdminDashboard() {
         },
       });
 
-      // Update users list after successful deletion
       setUsers(users.filter((user) => user._id !== userId));
       alert("User deleted successfully");
     } catch (err) {
@@ -126,9 +141,11 @@ function AdminDashboard() {
       console.error("Error deleting user:", err);
     }
   };
+
   useEffect(() => {
     if (activeTab === "users") {
       fetchUsers();
+      fetchMonthlyUsers();
     } else if (activeTab === "properties") {
       fetchProperties();
     } else if (activeTab === "payments") {
@@ -138,7 +155,6 @@ function AdminDashboard() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
       <div className="w-64 bg-gray-800 text-white">
         <div className="p-4 font-bold text-xl">Admin Panel</div>
         <nav className="mt-6">
@@ -201,17 +217,14 @@ function AdminDashboard() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 p-8 overflow-auto">
         {activeTab === "dashboard" && (
           <div>
             <h1 className="text-2xl font-bold mb-4">Dashboard</h1>            
-            {/* PropertyPieChart component */}
             <div className="mb-8">
               <PropertyPieChart />
             </div>
             
-            {/* FeedbackBarGraph component */}
             <div>
               <FeedbackBarGraph />
             </div>
@@ -269,6 +282,22 @@ function AdminDashboard() {
                 </table>
               )}
             </div>
+
+            <div className="mt-8 bg-white p-4 rounded shadow">
+              <h2 className="text-xl font-semibold mb-4">Monthly User Activity</h2>
+              <div className="h-80 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={monthlyUsers}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="uniqueUserCount" fill="#8884d8" name="Unique Users" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
         )}
 
@@ -292,7 +321,6 @@ function AdminDashboard() {
                       <th className="text-center p-2">Type</th>
                       <th className="text-center p-2">City</th>
                       <th className="text-center p-2">Status</th>
-                      {/* <th className="text-left p-2">Actions</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -318,14 +346,6 @@ function AdminDashboard() {
                               {property.status || "N/A"}
                             </span>
                           </td>
-                          {/* <td className="p-2">
-                            <button
-                              onClick={() => handleDeleteProperty(property._id)}
-                              className="text-red-500 hover:text-red-700"
-                            >
-                              Delete
-                            </button>
-                          </td> */}
                         </tr>
                       ))
                     ) : (
@@ -360,7 +380,6 @@ function AdminDashboard() {
                       <th className="text-center p-2">Payment ID</th>
                       <th className="text-center p-2">Username</th>
                       <th className="text-center p-2">Owner Name</th>
-                      {/* <th className="text-left p-2">Property Name</th> */}
                       <th className="text-center p-2">Payment Type</th>
                       <th className="text-center p-2">Amount</th>
                     </tr>
@@ -370,7 +389,7 @@ function AdminDashboard() {
                       payments.map((payment) => (
                         <tr key={payment._id} className="border-t">
                           <td className="p-2">
-                            {payment._id/*.substring(0, 6)*/}
+                            {payment._id}
                           </td>
                           <td className="p-2">
                             {payment.userId?.username || "N/A"}
@@ -378,9 +397,6 @@ function AdminDashboard() {
                           <td className="p-2">
                             {payment.ownerId?.username || "N/A"}
                           </td>
-                          {/* <td className="p-2">
-                            {payment.propertyId?.title || "N/A"}
-                          </td> */}
                           <td className="p-2 capitalize">
                             {payment.paymentType || "N/A"}
                           </td>

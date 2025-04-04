@@ -1,0 +1,51 @@
+.view-graph-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f4f4f4;
+    height: calc(100vh - 100px);
+}
+
+.graph-section {
+    width: 48%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.graph-section h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.custom-tooltip {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-tooltip p {
+    margin: 5px 0;
+}
+
+.custom-tooltip strong {
+    color: #333;
+}
+
+@media (max-width: 1024px) {
+    .view-graph-container {
+        flex-direction: column;
+    }
+
+    .graph-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

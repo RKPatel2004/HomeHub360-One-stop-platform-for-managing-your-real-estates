@@ -58,7 +58,7 @@ const SignUp = () => {
       dispatch(AddUser(usr))
       localStorage.setItem('token', response.data.token);
       setTimeout(() => {
-        navigate('/');
+        navigate('/login');
       }, 1000);
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred during signup');

@@ -73,6 +73,13 @@ const officeSchema = new mongoose.Schema({
     type: Date,
     default: null,
   },
+  views: {
+    count: { type: Number, default: 0 },
+    uniqueUsers: [{ 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'User' 
+    }]
+  },
   createdAt: {
     type: Date,
     default: Date.now,

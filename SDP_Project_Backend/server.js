@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const path = require('path');
+const passport = require('./config/passport');
+const session = require('express-session');
 
 dotenv.config();
 
@@ -12,8 +14,20 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Session middleware for passport
+app.use(session({
+  secret: process.env.JWT_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 const signupRoute = require("./routes/signup");
 const loginRoute = require("./routes/login");
+const oauthRoutes = require("./routes/oauth"); // New OAuth routes
 const ForgotRoute = require("./routes/forgotPassword");
 const profileRoute = require("./routes/profile");
 const updateUserRoute = require("./routes/updateUser");
@@ -44,6 +58,9 @@ const feedbackGraphRoutes = require('./routes/feedbackGraphRoutes');
 const ownerAnalysisRoutes = require('./routes/ownerAnalysis');
 const customerAnalysisRoutes = require('./routes/customerAnalysis');
 const getAllFeedbacksRoute = require('./routes/getAllFeedbacks');
+const viewRoutes = require('./routes/propertyView');
+const viewGraphRoutes = require('./routes/viewGraph');
+const monthlyUniqueUsersRoute = require('./routes/userActivityByAdmin');
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -52,6 +69,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use("/api", signupRoute);
 app.use("/api", loginRoute);
+app.use("/api/auth", oauthRoutes); // Add OAuth routes
 app.use("/api", ForgotRoute);
 app.use("/api/profile", profileRoute);
 app.use("/api/updateUser", updateUserRoute);
@@ -81,6 +99,9 @@ app.use('/api', feedbackGraphRoutes);
 app.use('/api/analytics', ownerAnalysisRoutes);
 app.use('/api/customer-analytics', customerAnalysisRoutes);
 app.use('/api', getAllFeedbacksRoute);
+app.use('/api/views', viewRoutes);
+app.use('/api/view-graph', viewGraphRoutes);
+app.use('/api/analytics', monthlyUniqueUsersRoute);
 
 app.get("/", (req, res) => {
   res.send("HomeHub360 API is running...");

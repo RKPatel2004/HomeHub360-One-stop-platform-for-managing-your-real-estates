@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import SubmitProperty from './SubmitProperty';
 import NotificationList from './NotificationList';
 import OwnerAnalytics from './OwnerAnalytics';
+import ViewGraph from './ViewGraph'; 
 import './ManageProperty.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -54,6 +56,8 @@ const ManageProperty = () => {
                 return <SubmitProperty />;
             case 'analytics':
                 return <OwnerAnalytics />;
+            case 'customerActivity':
+                return <ViewGraph />;
             default:
                 return <Dashboard />;
         }
@@ -62,7 +66,6 @@ const ManageProperty = () => {
     const toggleNotifications = () => {
         setShowNotifications(!showNotifications);
         if (!showNotifications) {
-            // Reset unread count when opening notifications
             setUnreadCount(0);
         }
     };
@@ -100,6 +103,15 @@ const ManageProperty = () => {
                         }}
                     >
                         {/* My Analysis */} Dashboard
+                    </button>
+                    <button
+                        className={`nav-link ${activeTab === 'customerActivity' ? 'active' : ''}`}
+                        onClick={() => {
+                            setActiveTab('customerActivity');
+                            setShowNotifications(false);
+                        }}
+                    >
+                        Customer Activity
                     </button>
                 </div>
                 <div className="user-greeting">

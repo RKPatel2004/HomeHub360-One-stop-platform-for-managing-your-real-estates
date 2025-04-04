@@ -84,7 +84,7 @@ const FeatureDetails = () => {
       title: 'Admin Management',
       description: 'Comprehensive administrative control panel',
       icon: '⚙️',
-      redirectTo: '/Admin_Dashboard',
+      redirectTo: '/login',
       details: [
         'User management and oversight',
         'System configuration and settings',

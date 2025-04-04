@@ -1,4 +1,6 @@
+
 const mongoose = require('mongoose');
+
 const apartmentSchema = new mongoose.Schema({
   ownerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   title: { type: String, required: true },
@@ -17,7 +19,15 @@ const apartmentSchema = new mongoose.Schema({
   price: { type: Number },
   rentalTimer: { type: Number, default: null },
   rentalStartDate: { type: Date, default: null },
+  views: {
+    count: { type: Number, default: 0 },
+    uniqueUsers: [{ 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'User' 
+    }]
+  },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });
+
 module.exports = mongoose.model('Apartment', apartmentSchema);
