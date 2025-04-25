@@ -342,9 +342,9 @@ const Landing = () => {
           </div>
           <div className="footer-section">
             <h3>Legal</h3>
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
-          </div>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Service</Link>
+          </div>    
         </div>
         <div className="footer-bottom">
           <p>&copy; 2025 HomeHub360. All rights reserved.</p>

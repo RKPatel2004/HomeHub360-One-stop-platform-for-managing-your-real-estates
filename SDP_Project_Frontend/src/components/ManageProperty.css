@@ -111,3 +111,9 @@
       padding: 0.5rem;
     }
   }
+
+  .notification-bell.active {
+    background-color: #f0f0f0;
+    color: #1a73e8;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
