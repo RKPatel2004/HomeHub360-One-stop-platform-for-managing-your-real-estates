@@ -30,7 +30,7 @@ const UserProfile = () => {
       jwtDecode(token);
       const fetchUserData = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/profileDetails/getUserProfile', {
+          const response = await axios.get(/*'http://localhost:5000/api/profileDetails/getUserProfile'*/'https://homehub360.onrender.com/api/profileDetails/getUserProfile', {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -105,7 +105,7 @@ const UserProfile = () => {
         formDataToSend.append('profilePic', file);
       }
       const response = await axios.put(
-        'http://localhost:5000/api/updateUser/updateProfile',
+        /*'http://localhost:5000/api/updateUser/updateProfile'*/'https://homehub360.onrender.com/api/updateUser/updateProfile',
         formDataToSend,
         {
           headers: {

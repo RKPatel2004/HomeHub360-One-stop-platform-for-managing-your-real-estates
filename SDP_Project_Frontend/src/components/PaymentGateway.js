@@ -18,7 +18,7 @@ const PaymentGateway = ({ propertyId, amount, paymentType, description, onClose 
         if (!token || !propertyId) return;
         
         const response = await axios.get(
-          `http://localhost:5000/api/property/${propertyId}`,
+          /*`http://localhost:5000/api/property/${propertyId}`*/`https://homehub360.onrender.com/api/property/${propertyId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -93,7 +93,7 @@ const PaymentGateway = ({ propertyId, amount, paymentType, description, onClose 
       });
       
       const { data } = await axios.post(
-        'http://localhost:5000/api/payments/create-paypal-order',
+        /*'http://localhost:5000/api/payments/create-paypal-order'*/'https://homehub360.onrender.com/api/payments/create-paypal-order',
         {
           userId,
           propertyId,

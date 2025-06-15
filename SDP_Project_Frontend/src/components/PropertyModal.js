@@ -45,7 +45,7 @@ const PropertyModal = ({
 
         // Make API call to delete property
         const response = await axios.delete(
-          `http://localhost:5000/api/deleteProperty/${property._id}/${propertyType}`,
+          /*`http://localhost:5000/api/deleteProperty/${property._id}/${propertyType}`*/`https://homehub360.onrender.com/api/deleteProperty/${property._id}/${propertyType}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -289,12 +289,7 @@ const PropertyModal = ({
               >
                 Specifications
               </button>
-              <button
-                className={`tab-button ${activeTab === "amenities" ? "active" : ""}`}
-                onClick={() => setActiveTab("amenities")}
-              >
-                Amenities
-              </button>
+      
               <button
                 className={`tab-button ${activeTab === "pricing" ? "active" : ""}`}
                 onClick={() => setActiveTab("pricing")}

@@ -73,7 +73,7 @@ const PropertyEditForm = ({ property, onClose, onPropertyUpdated }) => {
       const completeImageURLs = imageURLs.map(url => {
         if (url && !url.startsWith('http')) {
           // If the URL is relative, prepend base URL
-          return `http://localhost:5000${url.startsWith('/') ? '' : '/'}${url}`;
+          return /*`http://localhost:5000${url.startsWith('/') ? '' : '/'}${url}`*/`https://homehub360.onrender.com${url.startsWith('/') ? '' : '/'}${url}`;
         }
         return url;
       });
@@ -267,7 +267,7 @@ const PropertyEditForm = ({ property, onClose, onPropertyUpdated }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/editProperty/${property._id}/${formData.propertyType}`,
+        /*`http://localhost:5000/api/editProperty/${property._id}/${formData.propertyType}`*/`https://homehub360.onrender.com/api/editProperty/${property._id}/${formData.propertyType}`,
         dataToSubmit,
         {
           headers: {
@@ -592,16 +592,16 @@ const PropertyEditForm = ({ property, onClose, onPropertyUpdated }) => {
                       />
                     </div>
 
-                    <div className="form-group checkbox-group">
-                      <label className="checkbox-container">
+                    <div className="form-group switch-group">
+                      <label className="switch-label">Swimming Pool</label>
+                      <label className="switch">
                         <input
                           type="checkbox"
                           name="swimmingPool"
                           checked={formData.swimmingPool}
                           onChange={handleChange}
                         />
-                        <span className="checkmark"></span>
-                        Swimming Pool
+                        <span className="slider round"></span>
                       </label>
                     </div>
                   </div>
@@ -641,69 +641,79 @@ const PropertyEditForm = ({ property, onClose, onPropertyUpdated }) => {
                 </div>
 
                 <div className="listing-options">
-                  <div className="form-group checkbox-group">
-                    <label className="checkbox-container">
-                      <input
-                        type="checkbox"
-                        name="isForSale"
-                        checked={formData.isForSale}
-                        onChange={handleChange}
-                      />
-                      <span className="checkmark"></span>
-                      For Sale
-                    </label>
-                  </div>
-
-                  {formData.isForSale && (
-                    <div className="form-group">
-                      <label>Sale Price</label>
-                      <div className="price-input-container">
-                        <span className="currency-symbol">$</span>
-                        <input
-                          type="number"
-                          name="price"
-                          value={formData.price}
-                          onChange={handleChange}
-                          required
-                          min="1"
-                          className="price-input"
-                          placeholder="Enter sale price"
-                        />
+                  <div className="options-card">
+                    <div className="listing-option">
+                      <div className="form-group toggle-switch">
+                        <label className="toggle-label">
+                          <div className="toggle-text">For Sale</div>
+                          <div className="toggle-control">
+                            <input
+                              type="checkbox"
+                              name="isForSale"
+                              checked={formData.isForSale}
+                              onChange={handleChange}
+                            />
+                            <span className="toggle-slider"></span>
+                          </div>
+                        </label>
                       </div>
+
+                      {formData.isForSale && (
+                        <div className="form-group price-group">
+                          <label>Sale Price</label>
+                          <div className="price-input-container">
+                            <span className="currency-symbol">$</span>
+                            <input
+                              type="number"
+                              name="price"
+                              value={formData.price}
+                              onChange={handleChange}
+                              required
+                              min="1"
+                              className="price-input"
+                              placeholder="Enter sale price"
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
 
-                  <div className="form-group checkbox-group">
-                    <label className="checkbox-container">
-                      <input
-                        type="checkbox"
-                        name="isForRent"
-                        checked={formData.isForRent}
-                        onChange={handleChange}
-                      />
-                      <span className="checkmark"></span>
-                      For Rent
-                    </label>
-                  </div>
-
-                  {formData.isForRent && (
-                    <div className="form-group">
-                      <label>Monthly Rent</label>
-                      <div className="price-input-container">
-                        <span className="currency-symbol">$</span>
-                        <input
-                          type="number"
-                          name="rentPrice"
-                          value={formData.rentPrice}
-                          onChange={handleChange}
-                          required
-                          min="1"
-                          className="price-input"
-                          placeholder="Enter monthly rent"
-                        />
+                    <div className="listing-option">
+                      <div className="form-group toggle-switch">
+                        <label className="toggle-label">
+                          <div className="toggle-text">For Rent</div>
+                          <div className="toggle-control">
+                            <input
+                              type="checkbox"
+                              name="isForRent"
+                              checked={formData.isForRent}
+                              onChange={handleChange}
+                            />
+                            <span className="toggle-slider"></span>
+                          </div>
+                        </label>
                       </div>
+
+                      {formData.isForRent && (
+                        <div className="form-group price-group">
+                          <label>Monthly Rent</label>
+                          <div className="price-input-container">
+                            <span className="currency-symbol">$</span>
+                            <input
+                              type="number"
+                              name="rentPrice"
+                              value={formData.rentPrice}
+                              onChange={handleChange}
+                              required
+                              min="1"
+                              className="price-input"
+                              placeholder="Enter monthly rent"
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
 

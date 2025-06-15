@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './SignUp.css';
-import { useDispatch  , useSelector } from 'react-redux';
+import { useDispatch  /*, useSelector*/ } from 'react-redux';
 import { AddUser } from '../../redux/reducer/loginslice';
 
 const SignUp = () => {
@@ -16,7 +16,7 @@ const SignUp = () => {
     role: 'customer'
   });
   const dispatch = useDispatch();
-  const user = useSelector(state => state.User)
+  // const user = useSelector(state => state.User)
 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -46,7 +46,7 @@ const SignUp = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/register', formData);
+      const response = await axios.post(/*'http://localhost:5000/api/register'*/ 'https://homehub360.onrender.com/api/register', formData);
       setSuccess(response.data.message);
       const usr = {
         username: formData.username,

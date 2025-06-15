@@ -44,7 +44,7 @@ function AdminDashboard() {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/api/users", {
+      const response = await axios.get(/*"http://localhost:5000/api/users"*/'https://homehub360.onrender.com/api/users', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -63,7 +63,7 @@ function AdminDashboard() {
     setError(null);
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/api/analytics/monthly-unique-users", {
+      const response = await axios.get(/*"http://localhost:5000/api/analytics/monthly-unique-users"*/'https://homehub360.onrender.com/api/analytics/monthly-unique-users', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -83,7 +83,7 @@ function AdminDashboard() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:5000/api/getProperty",
+        /*"http://localhost:5000/api/getProperty"*/'https://homehub360.onrender.com/api/getProperty',
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -105,7 +105,7 @@ function AdminDashboard() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:5000/api/payments/all",
+        /*"http://localhost:5000/api/payments/all"*/'https://homehub360.onrender.com/api/payments/all',
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -128,7 +128,7 @@ function AdminDashboard() {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/users/${userId}`, {
+      await axios.delete(/*`http://localhost:5000/api/users/${userId}`*/`https://homehub360.onrender.com/api/users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -21,7 +21,7 @@ const NotificationList = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 };
-                const response = await axios.get('http://localhost:5000/api/notifications/user', config);
+                const response = await axios.get(/*'http://localhost:5000/api/notifications/user'*/'https://homehub360.onrender.com/api/notifications/user', config);
                 setNotifications(response.data.notifications);
 
                 // Extract all property IDs from notifications
@@ -40,8 +40,8 @@ const NotificationList = () => {
                     if (propertyId) {
                         try {
                             // Use the new unified property endpoint
-                            const propertyResponse = await axios.get(`http://localhost:5000/api/property/${propertyId}`, config);
-                            const collectionName = await axios.get(`http://localhost:5000/api/property/type/${propertyId}`, config);
+                            const propertyResponse = await axios.get(/*`http://localhost:5000/api/property/${propertyId}`*/`https://homehub360.onrender.com/api/property/${propertyId}`, config);
+                            const collectionName = await axios.get(/*`http://localhost:5000/api/property/type/${propertyId}`*/`https://homehub360.onrender.com/api/property/type/${propertyId}`, config);
                             console.log(collectionName);
                             propertyData[propertyId] = {
                                 name: propertyResponse.data.name || propertyResponse.data.title || 'Property',
@@ -76,7 +76,7 @@ const NotificationList = () => {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            await axios.put(`http://localhost:5000/api/notifications/read/${notificationId}`, {}, config);
+            await axios.put(/*`http://localhost:5000/api/notifications/read/${notificationId}`*/`https://homehub360.onrender.com/api/notifications/read/${notificationId}`, {}, config);
             setNotifications(notifications.map(n =>
                 n._id === notificationId ? { ...n, isRead: true } : n
             ));
@@ -93,7 +93,7 @@ const NotificationList = () => {
                     Authorization: `Bearer ${token}`,
                 },
             };
-            await axios.delete(`http://localhost:5000/api/notifications/${notificationId}`, config);
+            await axios.delete(/*`http://localhost:5000/api/notifications/${notificationId}`*/`https://homehub360.onrender.com/api/notifications/${notificationId}`, config);
             setNotifications(notifications.filter(n => n._id !== notificationId));
         } catch (error) {
             console.error('Error deleting notification:', error);

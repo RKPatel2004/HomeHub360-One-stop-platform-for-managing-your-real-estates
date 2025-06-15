@@ -17,7 +17,7 @@ const FeedbackBarGraph = () => {
         const fetchRatings = async () => {
             try {
                 const token = localStorage.getItem('token'); // Get JWT token
-                const response = await axios.get('http://localhost:5000/api/average-ratings', {
+                const response = await axios.get(/*'http://localhost:5000/api/average-ratings'*/'https://homehub360.onrender.com/api/average-ratings', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setData(response.data);

@@ -23,7 +23,7 @@ const ViewGraph = () => {
                 };
 
                 // Fetch views by property type
-                const propertyTypeResponse = await axios.get('http://localhost:5000/api/view-graph/views-by-property-type', config);
+                const propertyTypeResponse = await axios.get(/*'http://localhost:5000/api/view-graph/views-by-property-type'*/'https://homehub360.onrender.com/api/view-graph/views-by-property-type', config);
                 const propertyTypeDataProcessed = Object.entries(propertyTypeResponse.data.data).map(([type, data]) => ({
                     name: type,
                     totalViews: data.totalViews,
@@ -32,7 +32,7 @@ const ViewGraph = () => {
                 setPropertyTypeData(propertyTypeDataProcessed);
 
                 // Fetch views by location
-                const locationResponse = await axios.get('http://localhost:5000/api/view-graph/views-by-location', config);
+                const locationResponse = await axios.get(/*'http://localhost:5000/api/view-graph/views-by-location'*/'https://homehub360.onrender.com/api/view-graph/views-by-location', config);
                 
                 // Ensure all locations are included, even with 0 views
                 const allLocations = ['Chennai', 'Surat', 'Jaipur', 'Delhi', 'Pune', 'Ahmedabad', 'Banglore'];

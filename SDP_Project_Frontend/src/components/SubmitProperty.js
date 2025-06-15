@@ -145,7 +145,7 @@ const SubmitProperty = () => {
     console.log(dataToSubmit.images);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/submitProperty",
+        /*"http://localhost:5000/api/submitProperty"*/"https://homehub360.onrender.com/api/submitProperty",
         dataToSubmit,
         {
           headers: {

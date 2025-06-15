@@ -19,7 +19,7 @@ const Dashboard = () => {
   const fetchProperties = async () => {
     try {
       const token = user.token;
-      const response = await axios.get("http://localhost:5000/api/my-properties", {
+      const response = await axios.get(/*"http://localhost:5000/api/my-properties"*/'https://homehub360.onrender.com/api/my-properties', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProperties(response.data.properties);

@@ -17,7 +17,7 @@ const PropertyPieChart = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/analytics/property-stats", {
+        const res = await axios.get(/*"http://localhost:5000/api/analytics/property-stats"*/"https://homehub360.onrender.com/api/analytics/property-stats", {
           headers: { Authorization: `Bearer ${token}` }
         });
 

@@ -94,7 +94,6 @@ app.get("/", (req, res) => {
   res.send("HomeHub360 API is running...");
 });
 
-// Serve static files from the React frontend app
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
   app.get('*', (req, res) => {

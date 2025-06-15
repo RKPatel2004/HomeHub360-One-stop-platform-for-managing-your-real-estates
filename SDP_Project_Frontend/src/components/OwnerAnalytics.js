@@ -44,7 +44,7 @@ const OwnerAnalytics = () => {
                         Authorization: `Bearer ${user.token}`,
                     },
                 };
-                const response = await axios.get('http://localhost:5000/api/analytics/owner-analytics', config);
+                const response = await axios.get(/*'http://localhost:5000/api/analytics/owner-analytics'*/'https://homehub360.onrender.com/api/analytics/owner-analytics', config);
                 setAnalytics(response.data.data);
                 setLoading(false);
             } catch (err) {
@@ -62,7 +62,7 @@ const OwnerAnalytics = () => {
     useEffect(() => {
         const fetchFeedbacksData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/getAllFeedbacks', {
+                const response = await axios.get(/*'http://localhost:5000/api/getAllFeedbacks'*/'https://homehub360.onrender.com/api/getAllFeedbacks', {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });
                 setFeedbacks(response.data.data || []);
@@ -342,7 +342,7 @@ const OwnerAnalytics = () => {
                                 </div>
                                 <div className="bg-white rounded-lg p-4 shadow-sm mb-4">
                                     <p className="text-gray-700 italic text-center">
-                                        "{currentFeedback?.feedbackText || 'Very nice office interior and very spacious and neat & clean for working'}"
+                                        &quot;{currentFeedback?.feedbackText || 'Very nice office interior and very spacious and neat & clean for working'}&quot;
                                     </p>
                                 </div>
                                 <div className="flex justify-center space-x-2">

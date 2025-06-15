@@ -26,7 +26,7 @@ const ForgotPassword = () => {
     setSuccess("");
 
     try {
-      await axios.post("http://localhost:5000/api/forgot-password", {
+      await axios.post(/*"http://localhost:5000/api/forgot-password"*/ 'https://homehub360.onrender.com/api/forgot-password', {
         email: formData.email,
         newPassword: formData.newPassword,
         confirmPassword: formData.confirmPassword,

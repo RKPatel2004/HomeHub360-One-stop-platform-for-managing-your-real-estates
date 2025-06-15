@@ -118,8 +118,7 @@ exports.createPayPalOrder = async (req, res) => {
       propertyOwnerId = await getPropertyOwnerId(propertyId);
     }
 
-    // Convert INR to USD for PayPal sandbox (if needed)
-    // Note: In production with a business account, you may support INR directly
+    
     const paypalCurrency = PAYPAL_MODE === 'sandbox' ? 'USD' : (currency || 'USD');
     
     // For sandbox testing, if the amount is very large, scale it down

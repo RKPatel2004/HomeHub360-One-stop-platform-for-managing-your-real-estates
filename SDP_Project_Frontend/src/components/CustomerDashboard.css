@@ -1,4 +1,4 @@
-/* Customer Dashboard Styles */
+Customer Dashboard Styles
 .customer-dashboard {
     max-width: 1200px;
     margin: 0 auto;
@@ -22,7 +22,6 @@
     font-size: 1.1rem;
   }
   
-  /* Filter tabs */
   .filter-tabs {
     display: flex;
     justify-content: center;
@@ -51,14 +50,12 @@
     color: white;
   }
   
-  /* Property Grid */
   .properties-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 2rem;
   }
   
-  /* Property Card */
   .property-card {
     background: white;
     border-radius: 10px;
@@ -207,7 +204,6 @@
     background: #2980b9;
   }
   
-  /* Loading State */
   .loading-container {
     display: flex;
     flex-direction: column;
@@ -231,7 +227,6 @@
     100% { transform: rotate(360deg); }
   }
   
-  /* Error State */
   .error-message {
     background: #fef2f2;
     border-left: 4px solid #ef4444;
@@ -248,7 +243,6 @@
     margin-right: 1rem;
   }
   
-  /* Empty State */
   .no-properties {
     text-align: center;
     padding: 3rem 1rem;
@@ -288,7 +282,6 @@
     background: #2980b9;
   }
   
-  /* Responsive Styles */
   @media (max-width: 768px) {
     .properties-grid {
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

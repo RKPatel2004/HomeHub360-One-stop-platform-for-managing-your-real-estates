@@ -38,7 +38,7 @@ const Landing = () => {
   const handleDeleteAccount = async () => {
     try {
       const token = user.token;
-      const response = await fetch('http://localhost:5000/api/deleteUser', {
+      const response = await fetch(/*'http://localhost:5000/api/deleteUser'*/ 'https://homehub360.onrender.com/api/deleteUser', {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`, 
@@ -116,6 +116,14 @@ const Landing = () => {
     }
   };
 
+  const handleFeatureClick = (featureId) => {
+    if (!isLoggedIn) {
+      navigate('/login');
+    } else {
+      navigate(`/features/${featureId}`);
+    }
+  };
+
   const features = [
     {
       id: 'property-listing',
@@ -162,13 +170,17 @@ const Landing = () => {
             {showFeatureMenu && (
               <div className="dropdown-menu">
                 {features.map(feature => (
-                  <Link 
+                  <a 
                     key={feature.id}
-                    to={`/features/${feature.id}`}
+                    href="#"
+                    onClick={(e) => { 
+                      e.preventDefault();
+                      handleFeatureClick(feature.id);
+                    }}
                     className="dropdown-item"
                   >
                     {feature.title}
-                  </Link>
+                  </a>
                 ))}
               </div>
             )}
@@ -186,7 +198,7 @@ const Landing = () => {
                 onMouseLeave={() => setShowProfileMenu(false)}
               >
                 <img 
-                  src={`http://localhost:5000/${userProfile.profileImage}`} 
+                  src={/*`http://localhost:5000/${userProfile.profileImage}`*/`https://homehub360.onrender.com/${userProfile.profileImage}`} 
                   alt="Profile" 
                   className="profile-image"
                 />

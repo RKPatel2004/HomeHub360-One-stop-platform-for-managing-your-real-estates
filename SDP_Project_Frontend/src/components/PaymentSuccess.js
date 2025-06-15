@@ -36,7 +36,7 @@ const PaymentSuccess = () => {
             : {};
           
           const { data } = await axios.get(
-            `http://localhost:5000/api/payments/details?orderId=${orderId}`,
+            /*`http://localhost:5000/api/payments/details?orderId=${orderId}`*/`https://homehub360.onrender.com/api/payments/details?orderId=${orderId}`,
             config
           );
           

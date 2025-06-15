@@ -20,7 +20,7 @@ const PaymentCancel = () => {
       try {
         if (token) {
           // Notify the backend about the cancelled payment
-          await axios.get(`http://localhost:5000/api/payments/cancel-paypal-order?token=${token}`);
+          await axios.get(/*`http://localhost:5000/api/payments/cancel-paypal-order?token=${token}`*/`https://homehub360.onrender.com/api/payments/cancel-paypal-order?token=${token}`);
         }
       } catch (err) {
         console.error('Error handling cancelled payment:', err);
