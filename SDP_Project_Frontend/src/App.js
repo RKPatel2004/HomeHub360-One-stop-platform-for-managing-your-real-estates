@@ -1,5 +1,5 @@
 import React/*, { useEffect }*/ from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { /*HashRouter*/ BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from './auth/signup/SignUp';
 import Login from './auth/login/Login';
 import ForgotPassword from "./auth/forgot-password/ForgotPassword";
