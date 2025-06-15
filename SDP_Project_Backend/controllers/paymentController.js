@@ -243,10 +243,10 @@ exports.capturePayPalOrder = async (req, res) => {
     }
     
     
-    res.redirect(`http://localhost:3000/#/payment-success?orderId=${token}`);
+    res.redirect(/*`http://localhost:3000/#/payment-success?orderId=${token}`*/`https://frontend-0vfc.onrender.com/#/payment-success?orderId=${token}`);
   } catch (error) {
     console.error('Error capturing PayPal payment:', error.response ? error.response.data : error);
-    res.redirect(`http://localhost:3000/#/payment-cancel?error=${encodeURIComponent(error.message)}`);
+    res.redirect(/*`http://localhost:3000/#/payment-cancel?error=${encodeURIComponent(error.message)}`*/`https://frontend-0vfc.onrender.com/#/payment-cancel?error=${encodeURIComponent(error.message)}`);
   }
 };
 
@@ -265,7 +265,7 @@ exports.cancelPayPalOrder = async (req, res) => {
     }
 
     // Update this URL to point to the frontend
-    res.redirect(`http://localhost:3000/#/payment-cancel`);
+    res.redirect(/*`http://localhost:3000/#/payment-cancel`*/`https://frontend-0vfc.onrender.com/#/payment-cancel`);
   } catch (error) {
     console.error('Error cancelling PayPal order:', error);
     res.status(500).json({
