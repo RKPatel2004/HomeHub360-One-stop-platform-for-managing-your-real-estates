@@ -84,8 +84,11 @@ const PaymentGateway = ({ propertyId, amount, paymentType, description, onClose 
       // Calculate the frontend base URL for the return URLs
       // Using hash-based URLs
       const frontendBaseUrl = window.location.origin;
-      const returnUrl = `${frontendBaseUrl}/#/payment-success`;
-      const cancelUrl = `${frontendBaseUrl}/#/payment-cancel`;
+      // const returnUrl = `${frontendBaseUrl}/#/payment-success`;
+      // const cancelUrl = `${frontendBaseUrl}/#/payment-cancel`;
+      const returnUrl = `${frontendBaseUrl}/payment-success`;
+      const cancelUrl = `${frontendBaseUrl}/payment-cancel`;
+
       
       console.log('Return URLs:', {
         returnUrl,
