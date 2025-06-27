@@ -45,7 +45,7 @@ const PropertyModal = ({
 
         // Make API call to delete property
         const response = await axios.delete(
-          /*`http://localhost:5000/api/deleteProperty/${property._id}/${propertyType}`*/`https://homehub360.onrender.com/api/deleteProperty/${property._id}/${propertyType}`,
+          `http://localhost:5000/api/deleteProperty/${property._id}/${propertyType}`/*`https://homehub360.onrender.com/api/deleteProperty/${property._id}/${propertyType}`*/,
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -26,7 +26,7 @@ const ManageProperty = () => {
                 },
             };
             // Updated endpoint to match the one defined in your routes
-            const response = await axios.get(/*'http://localhost:5000/api/notifications/unread-count'*/'https://homehub360.onrender.com/api/notifications/unread-count', config);
+            const response = await axios.get('http://localhost:5000/api/notifications/unread-count'/*'https://homehub360.onrender.com/api/notifications/unread-count'*/, config);
             // Updated to match the structure from your controller
             setUnreadCount(response.data.unreadCount);
         } catch (error) {

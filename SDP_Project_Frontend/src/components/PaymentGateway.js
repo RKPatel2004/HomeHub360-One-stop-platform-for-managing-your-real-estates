@@ -18,7 +18,7 @@ const PaymentGateway = ({ propertyId, amount, paymentType, description, onClose 
         if (!token || !propertyId) return;
         
         const response = await axios.get(
-          /*`http://localhost:5000/api/property/${propertyId}`*/`https://homehub360.onrender.com/api/property/${propertyId}`,
+          `http://localhost:5000/api/property/${propertyId}`/*`https://homehub360.onrender.com/api/property/${propertyId}`*/,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -84,10 +84,10 @@ const PaymentGateway = ({ propertyId, amount, paymentType, description, onClose 
       // Calculate the frontend base URL for the return URLs
       // Using hash-based URLs
       const frontendBaseUrl = window.location.origin;
-      // const returnUrl = `${frontendBaseUrl}/#/payment-success`;
-      // const cancelUrl = `${frontendBaseUrl}/#/payment-cancel`;
-      const returnUrl = `${frontendBaseUrl}/payment-success`;
-      const cancelUrl = `${frontendBaseUrl}/payment-cancel`;
+      const returnUrl = `${frontendBaseUrl}/#/payment-success`;
+      const cancelUrl = `${frontendBaseUrl}/#/payment-cancel`;
+      // const returnUrl = `${frontendBaseUrl}/payment-success`;
+      // const cancelUrl = `${frontendBaseUrl}/payment-cancel`;
 
       
       console.log('Return URLs:', {
@@ -96,7 +96,7 @@ const PaymentGateway = ({ propertyId, amount, paymentType, description, onClose 
       });
       
       const { data } = await axios.post(
-        /*'http://localhost:5000/api/payments/create-paypal-order'*/'https://homehub360.onrender.com/api/payments/create-paypal-order',
+        'http://localhost:5000/api/payments/create-paypal-order'/*'https://homehub360.onrender.com/api/payments/create-paypal-order'*/,
         {
           userId,
           propertyId,

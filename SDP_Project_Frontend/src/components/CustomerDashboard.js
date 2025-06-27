@@ -26,7 +26,7 @@ const CustomerDashboard = () => {
           return;
         }
 
-        const response = await axios.get(/*'http://localhost:5000/api/booked-properties'*/'https://homehub360.onrender.com/api/booked-properties', {
+        const response = await axios.get('http://localhost:5000/api/booked-properties'/*'https://homehub360.onrender.com/api/booked-properties'*/, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -71,7 +71,7 @@ const CustomerDashboard = () => {
     try {
       const token = user.token;
       
-      const response = await axios.get(/*`http://localhost:5000/api/property-rent-timer/${propertyId}`*/`https://homehub360.onrender.com/api/property-rent-timer/${propertyId}`, {
+      const response = await axios.get(`http://localhost:5000/api/property-rent-timer/${propertyId}`/*`https://homehub360.onrender.com/api/property-rent-timer/${propertyId}`*/, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -168,7 +168,7 @@ const CustomerDashboard = () => {
       setLoadingRemainingDays(prev => ({ ...prev, [propertyId]: true }));
       const token = user.token;
       
-      const response = await axios.get(/*`http://localhost:5000/api/property-rent-timer/${propertyId}`*/`https://homehub360.onrender.com/api/property-rent-timer/${propertyId}`, {
+      const response = await axios.get(`http://localhost:5000/api/property-rent-timer/${propertyId}`/*`https://homehub360.onrender.com/api/property-rent-timer/${propertyId}`*/, {
         headers: {
           Authorization: `Bearer ${token}`
         }

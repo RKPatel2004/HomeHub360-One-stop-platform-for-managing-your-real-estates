@@ -43,7 +43,7 @@ const ViewProperty = () => {
         }
 
         const response = await axios.get(
-          /*`http://localhost:5000/api/property/${id}`*/`https://homehub360.onrender.com/api/property/${id}`,
+          `http://localhost:5000/api/property/${id}`/*`https://homehub360.onrender.com/api/property/${id}`*/,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -72,7 +72,7 @@ const ViewProperty = () => {
       const propertyType = getPropertyType(propertyData).toLowerCase();
       
       await axios.post(
-        /*`http://localhost:5000/api/views/${propertyType}/${id}/view`*/`https://homehub360.onrender.com/api/views/${propertyType}/${id}/view`,
+        `http://localhost:5000/api/views/${propertyType}/${id}/view`/*`https://homehub360.onrender.com/api/views/${propertyType}/${id}/view`*/,
         {},
         {
           headers: { Authorization: `Bearer ${user.token}` },
