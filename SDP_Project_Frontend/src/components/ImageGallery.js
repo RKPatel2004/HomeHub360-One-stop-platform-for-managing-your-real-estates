@@ -19,7 +19,7 @@ const ImageGallery = ({ images }) => {
       {images.map((image, index) => (
         <img
           key={index}
-          src={`http://localhost:5000${image}`}
+          src={`${process.env.REACT_APP_BASE_URL}${image}`}
           alt={`Property ${index + 1}`}
           className={`gallery-image ${index === currentIndex ? 'active' : ''}`}
         />

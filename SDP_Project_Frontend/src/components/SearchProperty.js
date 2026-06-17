@@ -36,7 +36,7 @@ const SearchProperty = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:5000/api/getProperty"/*"https://homehub360.onrender.com/api/getProperty"*/, {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/getProperty`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -107,7 +107,7 @@ const SearchProperty = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:5000/api/searchPropertyByAddress/${encodeURIComponent(searchTerm)}`/*`https://homehub360.onrender.com/api/searchPropertyByAddress/${encodeURIComponent(searchTerm)}`*/,
+        `${process.env.REACT_APP_BASE_URL}/api/searchPropertyByAddress/${encodeURIComponent(searchTerm)}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -262,7 +262,7 @@ const SearchProperty = () => {
       
       // Send the request with FormData instead of JSON
       const response = await axios.post(
-        `http://localhost:5000/api/${endpoint}`/*`https://homehub360.onrender.com/api/${endpoint}`*/,
+        `${process.env.REACT_APP_BASE_URL}/api/${endpoint}`,
         formData,
         {
           headers: { 

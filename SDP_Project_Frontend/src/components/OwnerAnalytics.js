@@ -44,7 +44,7 @@ const OwnerAnalytics = () => {
                         Authorization: `Bearer ${user.token}`,
                     },
                 };
-                const response = await axios.get('http://localhost:5000/api/analytics/owner-analytics'/*'https://homehub360.onrender.com/api/analytics/owner-analytics'*/, config);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/analytics/owner-analytics`, config);
                 setAnalytics(response.data.data);
                 setLoading(false);
             } catch (err) {
@@ -62,7 +62,7 @@ const OwnerAnalytics = () => {
     useEffect(() => {
         const fetchFeedbacksData = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/getAllFeedbacks'/*'https://homehub360.onrender.com/api/getAllFeedbacks'*/, {
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/getAllFeedbacks`, {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });
                 setFeedbacks(response.data.data || []);

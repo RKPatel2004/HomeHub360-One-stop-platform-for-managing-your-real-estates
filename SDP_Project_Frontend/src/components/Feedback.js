@@ -31,7 +31,7 @@ const Feedback = () => {
       setPropertyLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/property/${propertyId}`/*`https://homehub360.onrender.com/api/property/${propertyId}`*/,
+          `${process.env.REACT_APP_BASE_URL}/api/property/${propertyId}`,
           {
             headers: {
               Authorization: `Bearer ${user.token}`
@@ -80,7 +80,7 @@ const Feedback = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/feedback'/*'https://homehub360.onrender.com/api/feedback'*/,
+        `${process.env.REACT_APP_BASE_URL}/api/feedback`,
         {
           propertyId,
           feedbackText,

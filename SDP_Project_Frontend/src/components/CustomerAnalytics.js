@@ -43,7 +43,7 @@ const CustomerAnalytics = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:5000/api/customer-analytics/overview'/*'https://homehub360.onrender.com/api/customer-analytics/overview'*/, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/customer-analytics/overview`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       setOverview(response.data.data);
@@ -59,7 +59,7 @@ const CustomerAnalytics = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:5000/api/customer-analytics/monthly-activity'/*'https://homehub360.onrender.com/api/customer-analytics/monthly-activity'*/, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/customer-analytics/monthly-activity`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       setMonthlyActivity(response.data.data);
@@ -75,7 +75,7 @@ const CustomerAnalytics = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:5000/api/customer-analytics/property-transactions'/*'https://homehub360.onrender.com/api/customer-analytics/property-transactions'*/, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/customer-analytics/property-transactions`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       setPropertyTransactions(response.data.data);
@@ -89,7 +89,7 @@ const CustomerAnalytics = () => {
 
   const fetchFeedbacksData = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/getAllFeedbacks' /*'https://homehub360.onrender.com/api/getAllFeedbacks'*/, {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/getAllFeedbacks`, {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       setFeedbacks(response.data.data || []);

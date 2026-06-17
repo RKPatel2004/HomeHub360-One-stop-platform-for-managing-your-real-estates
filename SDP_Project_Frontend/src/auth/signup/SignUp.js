@@ -46,7 +46,7 @@ const SignUp = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/register' /*'https://homehub360.onrender.com/api/register'*/, formData);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/register`, formData);
       setSuccess(response.data.message);
       const usr = {
         username: formData.username,

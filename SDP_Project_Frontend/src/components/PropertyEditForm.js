@@ -73,7 +73,7 @@ const PropertyEditForm = ({ property, onClose, onPropertyUpdated }) => {
       const completeImageURLs = imageURLs.map(url => {
         if (url && !url.startsWith('http')) {
           // If the URL is relative, prepend base URL
-          return `http://localhost:5000${url.startsWith('/') ? '' : '/'}${url}`/*`https://homehub360.onrender.com${url.startsWith('/') ? '' : '/'}${url}`*/;
+          return `${process.env.REACT_APP_BASE_URL}${url.startsWith('/') ? '' : '/'}${url}`;
         }
         return url;
       });
@@ -267,7 +267,7 @@ const PropertyEditForm = ({ property, onClose, onPropertyUpdated }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/editProperty/${property._id}/${formData.propertyType}`/*`https://homehub360.onrender.com/api/editProperty/${property._id}/${formData.propertyType}`*/,
+        `${process.env.REACT_APP_BASE_URL}/api/editProperty/${property._id}/${formData.propertyType}`,
         dataToSubmit,
         {
           headers: {

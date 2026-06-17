@@ -38,7 +38,7 @@ const Landing = () => {
   const handleDeleteAccount = async () => {
     try {
       const token = user.token;
-      const response = await fetch('http://localhost:5000/api/deleteUser' /*'https://homehub360.onrender.com/api/deleteUser'*/, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/api/deleteUser`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`, 
@@ -198,7 +198,7 @@ const Landing = () => {
                 onMouseLeave={() => setShowProfileMenu(false)}
               >
                 <img 
-                  src={`http://localhost:5000/${userProfile.profileImage}`/*`https://homehub360.onrender.com/${userProfile.profileImage}`*/} 
+                  src={`${process.env.REACT_APP_BASE_URL}/${userProfile.profileImage}`} 
                   alt="Profile" 
                   className="profile-image"
                 />
